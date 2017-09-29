@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pruebas</title>
+	<style type="text/css">
+		.negro{
+			color: black;
+		}
+	</style>
+	<script type="text/javascript">
+	 	function modificar(){
+	 		console.log("Modificando el color");
+	 		//añadir texto a parrafo1
+	 		let parrafo1 = document.getElementById("parrafo1"); 
+	 		parrafo1.textContent="Hola parrafo1";
+
+	 		let enlaces = document.getElementsByTagName("a");
+	 		for(var i=0; i<enlaces.length;i++){
+	 			console.log(enlaces[i]);
+	 		}
+
+	 		let name = document.getElementsByName("hola");
+	 		console.log(name);
+
+	 		let query = document.querySelector(".negro");
+	 		console.log(query);
+
+	 		let queryAll = document.querySelectorAll(".negro");
+	 		for(var i=0; i<queryAll.length;i++){
+	 			console.log(queryAll[i]);
+	 		}
+	 		
+	 	}
+	</script>
+	
+</head>
+<body>
+	<p id="parrafo1">Esta pagina es <strong>facil</strong></p>
+	<p id="parrafo2" name="hola">Hola Mundo!</p>
+	<p>
+		<a class= "negro" href="http://www.google.es" id="parrafo3" target="_blank">Haga click aqui</a>
+	</p>
+	<p>
+		<a  href="negro" id="parrafo4" target="_blank">Haga click aqui</a>
+	</p>
+	<input type="button" value="Modificar" onclick="modificar()"/>
+</body>
+</html>

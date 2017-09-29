@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio3</title>
+	<script type="text/javascript">
+		var numero = parseInt(prompt("Escribe tu numero de DNI:"));
+		function letraDNI(numero){
+			var resto=0;
+			var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+			if(!isNaN(numero) && numero>=0 && numero <= 99999999){
+				resto=numero%23;
+				alert("La letra es "+letras[resto]);
+			}else{
+				alert("El numero introducido no es valido.")
+			}
+		}
+		letraDNI(numero);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio5</title>
+	<script type="text/javascript">
+		frase=prompt("Escribe una frase: ")
+		function esPalindromo(frase){
+			frase=frase.toUpperCase().split(' ').join('');
+			var fraseAlReves= frase.split('').reverse().join('');
+			if(frase===fraseAlReves){
+				alert("True");
+			}else{
+				alert("False");
+			}
+		}
+		esPalindromo(frase);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

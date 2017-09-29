@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio1</title>
+	<script type="text/javascript">
+	var frase = prompt("Escribe una frase:");
+	
+		function letrasMinMay(frase){	
+			var cont=0;
+			var cont2=0;		
+			for(var i=0;i<frase.length; i++){				
+				var caracter = frase.charAt(i);
+				if('a'<=caracter && caracter<='z'){
+					cont++;					
+				} else if('A'<=caracter&&caracter<='Z'){
+					cont2++;
+				}
+			}
+			if(cont===0 && cont2===0){
+				alert("No tiene letras May y Min.");	
+			}else{
+				alert("Tiene "+(cont+cont2)+" letra(s).");
+				alert("Tiene "+cont+" letra(s) minusculas.");
+				alert("Tiene "+cont2+" letra(s) mayusculas.");	
+			}					
+		}
+		letrasMinMay(frase);		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

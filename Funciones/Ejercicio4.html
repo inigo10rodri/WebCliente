@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio4</title>
+	<script type="text/javascript">
+		const vocales=['a','e','i','o','u'];
+		var frase =prompt("");
+		var fraseArray=frase.split("");
+		var numVocales = contarVocales(fraseArray);
+		alert("En la frase hay "+ numVocales+ " vocales");
+		function contarVocales(fraseArray){
+			var contVocales=0;
+			for(var i=0; i<fraseArray.length; i++){
+				if(esVocal(fraseArray[i])){
+					contVocales++;
+				}		
+			}
+			return contVocales;
+		}
+		function esVocal(caracter){
+			caracter = caracter.toLowerCase();
+			return vocales.indexOf(caracter) != -1;
+		}
+		numVocales(frase);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
