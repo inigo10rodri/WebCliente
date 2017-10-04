@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+   <title>Ver todos los parrafos</title> 
+<style type="text/css">
+   #cuadro { width: 400px; height: 200px; border: 1px black solid; float: right; }
+   p { font-size: 1em; font-family: arial; }
+</style>
+<script type="text/javascript">  
+  function anadir(indice){
+    cuadro.appendChild(anadirParrafos[indice]);
+  }
+  function acceder(){
+    let cuadro=document.getElementById("cuadro");
+    let parrafos= document.querySelectorAll("body>p");
+    for(let i=0;i<parrafos.length;i++){
+      let parrafo=parrafos[i];
+      let parrafoCopia=document.createElement("p");
+      parrafoCopia.textContent=parrafo.textContent;
+      cuadro.appendChild(parrafoCopia);
+    }
+  }
+  function borrar(){
+    let cuadro = document.getElementById("cuadro");
+    while (cuadro.firstChild){
+      cuadro.removeChild(cuadro.firstChild);
+    }    
+  }
+</script>
+</head>
+<body>
+   <h1>Acceso a los parrafo</h1>
+   <div id="cuadro"></div>
+     <p onclick="anadir(0)">Este es el primer parrafo de esta pagina</p>
+     <p onclick="anadir(1)">Este es el segundo parrafo</p>
+     <p onclick="anadir(2)">Y este el tercero</p>
+     <p onclick="acceder()">Pulsa en este cuarto parrafo para volver 
+         a verlos todos en el recuadro de la derecha.</p>
+     <p onclick="borrar()">Y pulsa en el quinto para borrar el 
+         recuadro de la derecha.</p>
+     <script>
+       var anadirParrafos= document.querySelectorAll("p");
+       var cuadro= document.getElementById("cuadro");
+     </script>
+</body>
+</html>

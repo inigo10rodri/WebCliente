@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+   <title>Ver todos los parrafos</title> 
+<style type="text/css">
+   #cuadro { width: 400px; height: 200px; border: 1px black solid; float: right; }
+   p { font-size: 1em; font-family: arial; }
+</style>
+<script type="text/javascript">
+  function acceder(){
+    let cuadro=document.getElementById("cuadro");
+    let parrafos= document.querySelectorAll("body>p");
+    for(let i=0;i<parrafos.length;i++){
+      let parrafo=parrafos[i];
+      let parrafoCopia=document.createElement("p");
+      parrafoCopia.textContent=parrafo.textContent;
+      cuadro.appendChild(parrafoCopia);
+    }
+  }
+  function borrar(){
+    let cuadro = document.getElementById("cuadro");
+    while (cuadro.firstChild){
+      cuadro.removeChild(cuadro.firstChild);
+    }    
+  }
+
+  /*function acceder(){
+    var anadirParrafos= document.getElementsByTagName("p");
+    var cuadro= document.getElementById("cuadro");
+    for(var i=0;i<anadirParrafos.length-1;i++){
+    cuadro.appendChild(anadirParrafos[i]);
+    }
+  }
+  function borrar(){
+    var cuadro= document.getElementById("cuadro");    
+    cuadro.remove();
+    //cuadro.innerHTML="";
+    
+  }*/
+
+/*
+//acceder
+let cuadro=document.getElementByid("cuadro");
+let parrafos= document.querySelectorAll("body>p");
+for(let i=0;i<parrafos.length;i++){
+  let parrafo=parrafos[i];
+  let parrafoCopia=document.createElement("p");
+  parrafoCopia.textContent=parrafo.textContent;
+  cuadro.appendChild(parrafoCopia);
+}
+//borrar
+let cuadro = document.getElementByid("cuadro");
+while (cuadro.firstChild){
+  cuadro.removechild(cuadro.firstChild);
+}*/
+</script>
+</head>
+<body>
+   <h1>Acceso a los parrafo</h1>
+   <div id="cuadro"></div>
+     <p>Este es el primer parrafo de esta pagina</p>
+     <p>Este es el segundo parrafo</p>
+     <p>Y este el tercero</p>
+     <p onclick="acceder()">Pulsa en este cuarto parrafo para volver 
+         a verlos todos en el recuadro de la derecha.</p>
+     <p onclick="borrar()">Y pulsa en el quinto para borrar el 
+         recuadro de la derecha.</p> 
+</body>
+</html>
