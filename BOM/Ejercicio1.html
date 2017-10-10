@@ -5,21 +5,30 @@
 	<style type="text/css">
 		#botonDiv{
 			background-color: red;
+			text-align: center;
 		}
 	</style>
 	<script type="text/javascript">
-		function nuevoDiv{
-			var nuevoDiv=createElement("div");
+		//Añade un nuevo DIV
+		function anadirDiv(){
+			var MIN=0;
+			var MAX=255
+			var rgb1= Math.floor(Math.random()*(MAX-MIN)+MIN);
+			var rgb2= Math.floor(Math.random()*(MAX-MIN)+MIN);
+			var rgb3= Math.floor(Math.random()*(MAX-MIN)+MIN);
+			var nuevoDiv=document.createElement("div");
 			var texto = document.createTextNode("Soy un nuevo DIV");
 			nuevoDiv.appendChild(texto);
 			var input= document.getElementById("div");
 			input.appendChild(nuevoDiv);
+			var randomColor = "background-color: rgb("+rgb1+","+rgb2+","+rgb3+");";
+			nuevoDiv.setAttribute("style",randomColor);
 		}	
 	</script>
 </head>
 <body>
 	<div id="div">
-		<input id="botonDiv" type="button" value="Anadir un nuevo DIVs" onclick="nuevoDiv()">
+		<input id="botonDiv" type="button" value="Anadir un nuevo DIVs" onclick="anadirDiv()">
 	</div>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Botones</title>
+	<script type="text/javascript">
+		function moveUp(){
+			window.moveBy(0,-10);
+		}
+		function moveDown(){
+			window.moveBy(0,10);	
+		}
+		function moveRight(){
+			window.moveBy(10,0);
+		}
+		function moveLeft(){
+			window.moveBy(-10,0);
+		}
+		function doubleWindow(){
+			
+			var duplicarX =window.screenX*2;
+			var duplicarY=window.screenY*2;
+			if(duplicarX == window.outerWidth && duplicarY = window.outerHeight){
+				window.resizeTo(200,200);
+			} 			
+		}
+		function minimizeWindow(){
+			window.innerWidth = 100;
+			window.innerHeight = 100;
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="Arriba" onclick="moveUp()">
+	<input type="button" value="Abajo" onclick="moveDown()">
+	<input type="button" value="Derecha" onclick="moveRight()">
+	<input type="button" value="Izquierda" onclick="moveLeft()">
+	<input type="button" value="Duplicar tamano" onclick="doubleWindow()">
+	<input type="button" value="Minimizar ventana" onclick="minimizeWindow()">
+</body>
+</html>
+<!-- http://www.forosdelweb.com/f13/sumar-pulsar-boton-1101752/-->

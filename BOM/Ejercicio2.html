@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio2</title>
+	<script type="text/javascript">
+		function mostrarInformacion(){
+			var p= document.getElementsByTagName("p");
+
+			var url= document.createTextNode(document.URL);
+			var nav=document.createTextNode(navigator.appCodeName);
+			var titulo=document.createTextNode(document.title);
+			var forms=document.createTextNode(document.forms.length);
+			var XYsize=document.createTextNode(window.outerWidth+"x"+window.outerHeight);			
+
+			var longitudHistorial=document.createTextNode("Si puedes navegar");
+			var error=document.createTextNode("El historial es demasiado largo.");
+			if(history.length>=10){				
+				p[5].appendChild(error);
+			}else{
+				p[5].appendChild(longitudHistorial);
+			}
+
+			p[0].appendChild(url);
+			p[1].appendChild(nav);
+			p[2].appendChild(titulo);
+			p[3].appendChild(forms);
+			p[4].appendChild(XYsize);
+		}
+	</script>
+</head>
+<body>
+	<p>URL: </p>
+	<p>Navegador: </p>
+	<p>Titulo: </p>
+	<p>Num formularios: </p>
+	<p>Tamano pagina: </p>
+	<p>Historial: </p>
+	<input type="button" value="Mostrar informacion" onclick="mostrarInformacion()">
+</body>
+</html>
