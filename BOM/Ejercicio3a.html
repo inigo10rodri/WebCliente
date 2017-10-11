@@ -15,18 +15,31 @@
 		function moveLeft(){
 			window.moveBy(-10,0);
 		}
+
 		function doubleWindow(){
-			
-			var duplicarX =window.screenX*2;
-			var duplicarY=window.screenY*2;
-			if(duplicarX == window.outerWidth && duplicarY = window.outerHeight){
-				window.resizeTo(200,200);
-			} 			
+			console.log("window.screenX:"+screen.width);
+			console.log("window.screenY:"+screen.height);
+			var duplicarX =window.innerWidth*2;
+			var duplicarY=window.innerHeight*2;
+			if(duplicarX<=screen.width && duplicarY<=screen.height){
+				resizeTo(duplicarX,duplicarY); 			
+			}
 		}
+
 		function minimizeWindow(){
-			window.innerWidth = 100;
-			window.innerHeight = 100;
+			var mitadX =window.innerWidth/2;
+			var mitadY=window.innerHeight/2;
+			var minWidth= 50;
+			screen.width=minWidth;
+			var minHeight= 50;
+			screen.height=minHeight;
+			if(mitadX>=screen.width && mitadY>=screen.height){
+				resizeTo(mitadX,mitadY); 			
+			}
 		}
+			
+
+	
 	</script>
 </head>
 <body>

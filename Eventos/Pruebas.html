@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pruebas eventos</title>
+	<style type="text/css">
+		#division{
+			background-color: black;
+			height: 100px;
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload=iniciar;
+	function iniciar(){
+		document.getElementById('division').onmouseover=pintarRojo;
+		document.getElementById('division').onmouseout=pintarVerde;
+	};
+
+	function pintarRojo(){
+		document.getElementById('division').style.backgroundColor='red';
+	}
+	function pintarVerde(){
+		document.getElementById('division').style.backgroundColor='green';
+	}		
+	</script>
+</head>
+<body>
+	<div id="division">		
+	</div>
+</body>
+</html>
