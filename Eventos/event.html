@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>events</title>
+	<script type="text/javascript">
+	window.onload=iniciar;
+	function iniciar(){
+		let eBoton=document.getElementById('boton1');
+		eBoton.addEventListener("click",prueba);
+	}	
+	function prueba(event){
+		console.log(event);
+		console.log(this);
+	}
+	</script>
+</head>
+<body>
+	<input id="boton1"  type="button" value="haz click1" />
+	<input type="button" value="haz click2" onclick="prueba(event)"/>
+</body>
+</html>

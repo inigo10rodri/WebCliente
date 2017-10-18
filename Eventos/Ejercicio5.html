@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer5</title>
+	<script type="text/javascript">
+		window.onload=iniciar;
+		function iniciar(){
+			enlaces = document.getElementsByTagName("a");
+			for(let i=0;i<enlaces.length;i++){
+  				enlaces[i].addEventListener("mouseover", mostrarEnlace);
+  			}
+		}
+		function mostrarEnlace(){
+			let enlaces= document.getElementsByTagName("a");
+			for(let i=0;i<enlaces.length;i++){
+				var elemento = document.querySelector('#texto');
+				valorHref=elemento.getAttribute('href'); 
+				document.getElementById("texto").setAttribute('value', 'valorHref');
+  			}
+			/*let valorHref=enlaces.getAttribute('href');
+			
+			document.getElementById("texto").setAttribute('value', 'valorHref');*/
+		}
+	</script>
+</head>
+<body>
+<ul>
+	<li><a  href="www.google.es">Google</a></li>
+	<li><a  href="www.github.com">Github</a></li>
+	<li><a  href="www.facebook.com">Facebook</a></li>
+</ul>
+<input type="text" id="texto" value="">
+	
+</body>
+</html>

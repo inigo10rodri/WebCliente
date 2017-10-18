@@ -1,0 +1,32 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <title>Eventos</title>
+  <script type="text/javascript">
+  	window.onload=iniciar;
+  	function iniciar(){
+  		let parrafos=document.getElementsByTagName("p");
+  		for(let i=0; i<parrafos.length;i++){
+  			parrafos[i].style.fontSize="16px";
+  			parrafos[i].addEventListener("click",aumentarFontSize);    
+  		}  					
+  	}
+  	function aumentarFontSize(){
+  		let tamano= this.style.fontSize;
+  		tamano=tamano.replace("px","");
+  		this.style.fontSize = (parseInt(tamano)+1)+"px";    			
+  	}
+  	/*function aumentarFontSize2(){
+  		let tamano= window.getComputedStyle(this,null).getPropertyValue("font-size");
+  		tamano=tamano.replace("px","");
+  		this.style.fontSize = (parseInt(tamano)+1)+"px";    			
+  	}*/
+  </script>
+</head>
+
+<body>
+   <p>Este texto debe aumentar de tamano</p>
+   <p>Este texto debe aumentar de tamano</p>
+   <p>Este texto debe aumentar de tamano</p>
+</body>
+</html>

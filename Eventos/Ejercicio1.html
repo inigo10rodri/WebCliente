@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejer1</title>
+	<script type="text/javascript">
+		window.onload=iniciar;
+		function iniciar(){
+			let eBoton1=document.getElementById('boton1');
+			eBoton1.addEventListener("click",click);
+			let eBoton2=document.getElementById('boton2');
+			eBoton2.addEventListener("click",click);
+			let eBoton3=document.getElementById('boton3');
+			eBoton3.addEventListener("click",click);
+		}
+		function click(){
+			console.log(this.value);			
+		}
+		/*function iniciar(){
+			for(let i=1;i<=3;i++){
+				let eBoton = document.createElement("input");
+				eBoton.value=i;
+				eBoton.type="button";
+				eBoton.addEventListener("click", mostrarOpcion);
+				document.body.appendChild(eBoton);
+			}
+		}
+		function mostrarOpcion(event){
+			console.log("has pulsado el boton "+this.value);
+		}*/
+
+		
+	</script>
+</head>
+<body>
+	<input type="button" value="1" id="boton1" />
+	<input type="button" value="2" id="boton2"/>
+	<input type="button" value="3" id="boton3"/>
+</body>
+</html>
