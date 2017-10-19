@@ -11,15 +11,8 @@
   			}
 		}
 		function mostrarEnlace(){
-			let enlaces= document.getElementsByTagName("a");
-			for(let i=0;i<enlaces.length;i++){
-				var elemento = document.querySelector('#texto');
-				valorHref=elemento.getAttribute('href'); 
-				document.getElementById("texto").setAttribute('value', 'valorHref');
-  			}
-			/*let valorHref=enlaces.getAttribute('href');
-			
-			document.getElementById("texto").setAttribute('value', 'valorHref');*/
+			let valorHref=this.getAttribute('href'); 
+			document.getElementById("texto").setAttribute('value', valorHref);
 		}
 	</script>
 </head>
