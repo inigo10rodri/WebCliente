@@ -5,7 +5,7 @@
   <script type="text/javascript">
   	window.onload=iniciar;
   	function iniciar(){
-  		divs=document.getElementsByClassName("linea");
+  		let divs=document.getElementsByClassName("linea");
   		for(let i=0;i<divs.length;i++){
   			divs[i].addEventListener("mouseover", colorVerde);
   			divs[i].addEventListener("mouseout", colorAzul);

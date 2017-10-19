@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer1</title>
+	<script type="text/javascript">
+		window.onload=iniciar;
+		function iniciar(){
+			let parrafo=document.getElementById("parrafo");		
+			parrafo.addEventListener("click",cambiarColor);
+			parrafo.addEventListener("dblclick",cambiarColor);
+		}
+		
+		function cambiarColor(event){
+			if(event.type === 'click'){
+				this.style.backgroundColor='red';
+			}else if(event.type === 'dblclick'){
+				this.style.backgroundColor='blue';
+			}			
+		}
+	</script>
+</head>
+<body>
+	<p id="parrafo">Haz click para cambiar de color.</p>
+</body>
+</html>
