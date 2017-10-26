@@ -1,0 +1,4 @@
+<form id ="formulario">
+	<input name="usuario"/>
+let eFormulario=document.getElementById("formulario");
+let eUsuario=eFormulario.elements["usuario"];

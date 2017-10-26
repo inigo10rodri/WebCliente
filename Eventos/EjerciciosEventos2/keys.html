@@ -1,0 +1,26 @@
+<html>
+<head><title> Ejemplo de los eventos onKeyDown, onKeyPress y onKeyUp </title>
+<script language=JavaScript>
+function DisplayEvent(eventName) {
+   var myMessage = window.document.form1.textarea2.value;
+   myMessage = myMessage + eventName;
+   window.document.form1.textarea2.value = myMessage;
+}
+</script>
+</head>
+<body>
+<FORM NAME=form1>
+   <TEXTAREA ROWS=15 COLS=40 NAME=textarea1 
+      onchange="DisplayEvent('onchange\n');" 
+      onkeydown="DisplayEvent('onkeydown\n');" 
+      onkeypress="DisplayEvent('onkeypress\n');" 
+      onkeyup="DisplayEvent('onkeyup\n\n');">
+   </TEXTAREA>
+   <TEXTAREA ROWS=15 COLS=40 NAME=textarea2>
+   </TEXTAREA>
+   <BR><BR>
+   <INPUT TYPE="button" VALUE="Limpiar la Ventana de Eventos" 
+      NAME=button1 onclick="window.document.form1.textarea2.value=''">
+</FORM>
+</body>
+</html>
