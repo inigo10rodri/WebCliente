@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ejer5</title>
-	<script type="text/javascript">
-		window.onload=iniciar;
-		function iniciar(){
-			let letra=window.document.descripcion.value;
-			letra.addEventListener('keypress',letraPresionada);
-		}
-		function letraPresionada(event){
-			
-		}
-
-	</script>
+    <meta charset="utf-8">
 </head>
 <body>
 <div align="center">
-<textarea id="descripcion" cols="40" rows="3" name="descripcion"> </textarea></br>
-<span id="letras">14/14 caracteres</span>
+    <textarea id="descripcion" cols="40" rows="3" name="descripcion" autofocus></textarea>
+    </br>
+    <span id="letras"><span class="left">14</span>/<span class="max">14</span> caracteres</span>
+
+    <script type="text/javascript">
+        const MAX_CHARS = parseInt(document.getElementById("letras").getElementsByClassName("max")[0].innerText);
+        let leftChars = document.getElementById("letras").getElementsByClassName("left")[0];
+        let letras = document.getElementById("letras");
+        document.getElementById("descripcion").addEventListener("keypress", updateChars, false);
+        function updateChars(event) {
+            let chars = this.value.length;
+            let left = MAX_CHARS - chars;
+            leftChars.innerText = left;
+            if (left <= 0) {
+                event.preventDefault();
+                letras.style.color = "red";
+            } else {
+                letras.style.color = null;
+            }
+        }
+    </script>
 </div>
 </body>
 </html>
-http://librosweb.es/libro/javascript/capitulo_6/obteniendo_informacion_del_evento_objeto_event.html

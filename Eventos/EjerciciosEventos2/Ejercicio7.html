@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejer7</title>
+    <script type="text/javascript">
+        let anchura = window.innerWidth;
+    window.onload = iniciar;
+
+    function iniciar(event) {
+        
+
+        //Coger posicion del raton
+
+        addEventListener('mousemove', posicionRaton);
+
+
+    }
+
+    function posicionRaton(event) {
+        let posRaton = event.clientX;
+        let posRaton10 = anchura * 0.1;
+        let posRaton20 = anchura * 0.2;
+        if (posRaton < posRaton10) {
+            document.getElementById("contenido").style.backgroundColor = 'red';
+        }        
+        else if (posRaton >= posRaton10 && posRaton <= posRaton20) {
+    
+            document.getElementById("contenido").style.backgroundColor = 'yellow';
+        } else {
+            document.getElementById("contenido").style.backgroundColor = 'green';
+        }
+    }
+    </script>
+</head>
+
+<body id="contenido">
+
+</body>
+
+</html>

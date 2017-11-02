@@ -16,18 +16,18 @@
 
 		function crearVentana(){
 			openWindow=window.open("","_blank","width=200, height=200");
-			openWindow.addEventListener('click', cerrarVentana);
 			timeout=setTimeout(cerrarVentana,3000);	
-			openWindow.addEventListener('mousemove', moverPagina);
+			openWindow.addEventListener('mousemove', moverClickRaton);
+			openWindow.addEventListener('click', moverClickRaton);
 		}
-		function moverPagina(){
+		function moverClickRaton(event){
 			clearTimeout(timeout);
 			timeout=setTimeout(cerrarVentana,3000);
 		}
 
 		function cerrarVentana(){
-			openWindow.close();
-			clearTimeout(timeout);
+			openWindow.close()
+;			
 		}
 	</script>
 </head>

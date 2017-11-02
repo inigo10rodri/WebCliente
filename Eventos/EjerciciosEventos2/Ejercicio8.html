@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    h1 {
+        text-align: center;
+    }
+    #cuadrado{
+        margin:250px;
+        border: solid 1px black;
+        background:yellow;
+        width:200px;
+        height:200px;
+        position: absolute;
+    }
+</style>
+<script>
+window.onload=function(){document.onkeydown=desplazar};
+    function desplazar(event){
+    	let tecla = event.keyCode;   
+        let situacionY = document.getElementById("cuadrado").offsetLeft;
+        let situacionX = document.getElementById("cuadrado").offsetTop;
+        if(tecla===37){
+        	cuadrado.style.left = situacionY-260+"px" ;
+        }else if(tecla===38){
+        	cuadrado.style.top = situacionX-260+"px" ;
+        }else if(tecla===39){
+        	cuadrado.style.left = situacionY-240+"px" ;
+        }else if (tecla===40){
+        	cuadrado.style.top = situacionX-240+"px" ;
+        }
+    }
+</script>
+<body>
+    <h1>Utiliza las flechas para mover el cuadrado</h1>
+    <div id="cuadrado"></div>
+</body>
+</html>

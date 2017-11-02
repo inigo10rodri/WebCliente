@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 9</title>
+    <style media="screen">
+        .square {
+            box-sizing: border-box;
+            border: 2px solid black;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            background-color: #ffeb3b;
+            transition: background .1s linear;
+            cursor: move;
+        }
+        .square:hover {
+            box-shadow: 0px 0px 2px black;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        let square;
+        let squareWidth;
+        let squareHeight;
+        document.addEventListener("DOMContentLoaded", createSquare, false);
+        function createSquare() {
+            square = document.createElement("div");
+            square.className = "square";
+            document.body.insertAdjacentElement("beforeend", square);
+            squareWidth = parseInt(window.getComputedStyle(square).getPropertyValue("width"));
+            squareHeight = parseInt(window.getComputedStyle(square).getPropertyValue("height"));
+            let winWidth = window.innerWidth;
+            let winHeight = window.innerHeight;
+            square.style.top = (winHeight - squareHeight) / 2 + "px";
+            square.style.left = (winWidth - squareWidth) / 2 + "px";
+            square.addEventListener("dragstart", dragStart, false);
+            square.addEventListener("drag", drag, false);
+            square.addEventListener("dragend", drop, false);
+        }
+        function dragStart(event) {
+            square.style.backgroundColor = "#2196f3";
+        }
+        function drag(event) {
+            square.style.top = (event.clientY - squareHeight / 2) + "px";
+            square.style.left = (event.clientX - squareWidth / 2) + "px";
+        }
+        function drop(event) {
+            square.style.backgroundColor = null;
+            square.style.top = (event.clientY - squareHeight / 2) + "px";
+            square.style.left = (event.clientX - squareWidth / 2) + "px";
+        }
+    </script>
+</body>
+</html>
