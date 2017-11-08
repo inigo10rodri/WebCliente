@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejer 2</title>
+    <script type="text/javascript">
+        
+        function cambiarColor(event){
+            event.preventDefault();
+            let cuadrados=document.getElementsByClassName("cuadrado");
+            let cuadrado=document.getElementById("formulario").elements["selCuadrado"].value;
+            let color=document.getElementById("formulario").elements["selColor"].value;
+
+            if(color==="default" || cuadrado==="default"){
+                alert("Selecciona el cuadrado y el color!");
+            }else{
+                cuadrados[cuadrado-1].style.backgroundColor=color;
+            }
+            
+        }      
+     
+    </script>
+    
+    <style>
+        .cuadrado {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 2px 5px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body> 
+	<form id="formulario" onsubmit="return cambiarColor(event)">
+
+        <select id="selCuadrado">
+            <option value="default">Selecciona el cuadrado</option>
+	        <option value="1">Cuadrado1</option>
+	        <option value="2">cuadrado2</option>
+	        <option value="3">cuadrado3</option>
+	        <option value="4">cuadrado4</option>
+	    </select>       
+        
+        <select id="selColor">
+            <option value="default">Selecciona el color</option>
+	        <option value = "red">Red</option>
+   			<option value = "orange">Orange</option>
+   			<option value = "yallow">Yellow</option>
+   			<option value = "green">Green</option>
+	    </select>
+        
+        <input type="submit" value="Cambiar Color"></input>
+    </form>
+   
+    <div class="cuadrado" ></div>
+    <div class="cuadrado" ></div>
+    <div class="cuadrado" ></div>
+    <div class="cuadrado" ></div>
+</body>
+</html>

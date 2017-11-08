@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer4</title>
+	<script type="text/javascript">
+		window.onload=iniciar;
+		function iniciar(){
+			document.getElementById("nombre").focus();
+			let limpiarForm=document.getElementById("limpiarForm");
+			let comprobar=document.getElementById("submit");			
+			limpiarForm.addEventListener("click",limpiarFormulario);
+			comprobar.addEventListener("click",comprobarFormulario);
+		}
+		function comprobarFormulario(event,id){
+			// Obtenemos la tecla pulsada
+			(event.keyCode)?code=event.keyCode:code=event.which;
+
+			// Si la tecla pulsada es enter (codigo ascii 13)
+			if(code==13){
+
+				// Si la variable id contiene "submit" enviamos el formulario
+				if(id=="submit"){
+					document.forms[0].submit();
+				}else{
+					// nos posicionamos en el siguiente input
+					document.getElementById(id).focus();
+				}
+			}
+			if(document.form.nombre.value===""||document.form.apellido.value===""||document.form.direccion.value===""||document.form.poblacion.value===""||document.form.codpostal.value===""||document.form.provincia.value===""){
+				document.forms[0].input.style.backgroundColor="red";
+			}	
+		}
+
+		function limpiarFormulario(){
+			document.form.nombre.value="";
+			document.form.apellido.value="";
+			document.form.direccion.value="";
+			document.form.poblacion.value="";
+			document.form.codpostal.value="";
+			document.form.provincia.value="";
+		}
+	</script>
+	<style type="text/css">
+		.col1{
+			text-align: center;
+			margin-left: 500px;
+			float: left;
+		}
+		.col2{
+			margin-right: 500px;
+			text-align: center;
+			float: right;
+		}
+		#boton{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<form id="form" name="form">
+		<div class="col1">
+			<input type="text" placeholder="Nombre" value="" name="nombre" id="nombre" onkeyup="comprobarFormulario(event,'apellido')"><br>
+			<input type="text" placeholder="Apellido" value="" name="apellido" id="apellido" onkeyup="comprobarFormulario(event,'direccion')"><br>
+			<input type="text" placeholder="Direccion" value="" name="direccion" id="direccion" onkeyup="comprobarFormulario(event,'poblacion')"><br>
+		</div>
+		<div class="col2">
+			<input type="text" placeholder="Poblacion" value="" name="poblacion" id="poblacion" onkeyup="comprobarFormulario(event,'codpostal')"><br>
+			<input type="number" placeholder="Codigo Postal" value="" name="codpostal" id="codpostal" onkeyup="comprobarFormulario(event,'provincia')"><br>
+			<input type="text" placeholder="Provincia" value="" name="provincia" id="provincia" onkeyup="comprobarFormulario(event,'submit')"><br>
+		</div>
+		<div id="boton">
+			<input type="button" value="Comprobar" id="submit">	
+			<input type="button" value="Limpiar formulario" id="limpiarForm">	
+		</div>		
+		
+	</form>
+
+</body>
+</html>

@@ -4,6 +4,17 @@
 	<title>Ejer1</title>
 	<script type="text/javascript">
 		
+		function comprobar(){
+			let nombre= document.formulario.nombre.value;
+			let apellidos= document.formulario.apellidos.value;
+			let direccion= document.formulario.direccion.value;
+			if(nombre===null || apellidos===null || direccion===null){
+				alert("Debes rellenar todos los campos!");
+			}else if(nombre!==null || apellidos!==null || direccion!==null){
+				alert("Los datos introducidos son los siguientes: Nombre: "+nombre+" Apellidos: "+apellidos+" Direccion: "+direccion);		
+			}
+		}
+
 	</script>
 </head>
 <style type="text/css">
@@ -12,17 +23,17 @@
 	}
 </style>
 <body>
-	<form id="formulario">
+	<form id="formulario" name="formulario" method="post" onsubmit="return comprobar()">
 		<label>Nombre:</label>
-		<input type="text" placeholder="Nombre" id="nombre"><br/><br/>
+		<input type="text" name="nombre" placeholder="Nombre" id="nombre" value=""><br/><br/>
 
 		<label>Apellidos:</label>
-		<input type="text" placeholder="Apellidos" id="apellidos"><br/><br/>
+		<input type="text" name="apellidos" placeholder="Apellidos" id="apellidos" value=""><br/><br/>
 
 		<label>Direccion:</label>
-		<input type="text" placeholder="Direccion" id="direccion"><br/><br/>
+		<input type="text" name="direccion" placeholder="Direccion" id="direccion" value=""><br/><br/>
 
-		<input type="button" value="Comprobar">
+		<input type="submit" value="Comprobar">
 	</form>
 </body>
 </html>

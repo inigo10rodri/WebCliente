@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer3</title>
+	<script type="text/javascript">
+		function ComprobarFormulario(){
+			let mensaje=document.form.mensaje.value;
+			let telefono=document.form.tel.value;
+			if(mensaje.length>100){
+				alert("El mensaje solo puede tener como maximo 100 letras!");
+			}else{
+				alert("Los datos se han enviado correctamente!");
+			}
+		
+		}
+	</script>
+	<style type="text/css">
+		#form{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<form id="form" name="form" method="post" onsubmit="return ComprobarFormulario()">
+		<input type="text" placeholder="Nombre" value=""><br>
+		<input type="text" placeholder="Apellido" value=""><br>
+		<input type="text" placeholder="Mensaje" value="" name="mensaje"><br>
+		<input type="number" placeholder="Telefono" value="" name="tel"><br>
+		<input type="email" placeholder="Email" value=""><br>
+		<input type="submit"  value="Comprobar">	
+	</form>
+
+</body>
+</html>
