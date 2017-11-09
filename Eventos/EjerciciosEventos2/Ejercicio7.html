@@ -5,30 +5,30 @@
     <title>Ejer7</title>
     <script type="text/javascript">
         let anchura = window.innerWidth;
+        let altura=window.innerHeight;
     window.onload = iniciar;
 
     function iniciar(event) {
         
 
         //Coger posicion del raton
-
         addEventListener('mousemove', posicionRaton);
 
 
     }
 
     function posicionRaton(event) {
-        let posRaton = event.clientX;
+        let posRatonX = event.clientX;
+        let posRatonY=event.clientY;
         let posRaton10 = anchura * 0.1;
         let posRaton20 = anchura * 0.2;
-        if (posRaton < posRaton10) {
+        if (posRatonX < posRaton10 || posRatonX >= (anchura-posRaton10)) {
             document.getElementById("contenido").style.backgroundColor = 'red';
         }        
-        else if (posRaton >= posRaton10 && posRaton <= posRaton20) {
-    
+        else if (posRatonX <= posRaton20 || posRatonX >= (anchura-posRaton20)) {    
             document.getElementById("contenido").style.backgroundColor = 'yellow';
-        } else {
-            document.getElementById("contenido").style.backgroundColor = 'green';
+        }else {
+           document.getElementById("contenido").style.backgroundColor = 'green'; 
         }
     }
     </script>
