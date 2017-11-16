@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1</title>
+	<style type="text/css">
+		.rojo {
+			background-color: red;
+			text-align: center;
+		}
+
+		.alto {
+			height: 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		
+		// añade un nuevo DIV al final del documento
+		function crearDiv(){
+			let eDiv = document.createElement("div");
+			eDiv.className = "alto";
+			eDiv.textContent = "SOY UN NUEVO <DIV>";
+			eDiv.style.backgroundColor = colorAleatorio();
+			document.body.appendChild(eDiv);
+		}
+
+		// devuelve un color aleatorio en formato "#XXXXXX"
+		function colorAleatorio(){
+			let valores = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+			let valorColor = "#";
+			for (let i=0;i<6;i++){
+				let indice = parseInt(Math.random() * 16);
+				valorColor += valores[indice];
+			}
+			return valorColor;
+		}
+	</script>
+</head>
+<body>
+	<div class="rojo alto">
+		<input type="button" value="pulsar" onclick="crearDiv()"/>
+	</div>
+</body>
+</html>

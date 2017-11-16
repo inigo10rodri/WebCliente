@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 2</title>
+  <meta charset="utf-8"/>
+  <script type="text/javascript">
+    
+    function informar() {
+      anadirParrafo("La URL de la página en la que estamos: "+ document.URL);
+      anadirParrafo("El navegador que estamos utilizando: "+navigator.appCodeName);
+      anadirParrafo("El titulo de la página: " + document.title);
+      anadirParrafo("El numero de formularios que hay en la página (si es que hay alguno): " + document.forms.length);
+      var texto = "Tamaño de la ventana actualmente: " + 
+              window.outerWidth + " pixels de ancho y " + 
+              window.outerHeight  + " pixels de alto";
+      anadirParrafo(texto);
+      if (history.length>10) {
+        alert("Deja de navegar ya");
+      }
+    }
+
+    function anadirParrafo(texto){
+      let parrafo = document.createElement("p");
+      parrafo.textContent = texto;
+      document.body.appendChild(parrafo);
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="obtener información" onclick="informar()"/>
+</body>
+</html>
+

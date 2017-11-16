@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+		
+		let ventana;
+
+		function abrirVentana(){
+			ventana = window.open('','','width=180,height=110');
+
+			crearBoton("arriba", irArriba);
+			crearBoton("abajo", irAbajo);
+			crearBoton("izquierda", irIzquierda);
+			crearBoton("derecha", irDerecha);
+			crearBoton("agrandar", agrandar);
+			crearBoton("reducir", reducir);
+			
+			centrar(ventana);
+
+			ventana.addEventListener("mouseover", mover);
+		}
+
+		function mover(){
+			let maxX = ventana.window.screen.availWidth-ventana.window.outerWidth;
+			let coordX = coordAleatoria(maxX);
+			let maxY = ventana.window.screen.availHeight-ventana.window.outerHeight;
+			let coordY = coordAleatoria(maxY);
+			ventana.moveTo(coordX, coordY);
+		}
+
+		// devuelve un número entre el 0 y max (ambos incluidos)
+		function coordAleatoria(max){
+			return Math.random() * (max + 1);
+		}
+
+		function parar(){
+			ventana.removeEventListener("mouseover", mover);
+			ventana.focus();
+		}
+
+		function crearBoton(nombre, funcion){
+			let boton = document.createElement("input");
+			boton.type = "button";
+			boton.value = nombre;
+			boton.onclick = funcion;
+			ventana.document.body.appendChild(boton);
+		}
+
+		function agrandar(){
+    		var anchoNuevo = ventana.window.innerWidth*2;
+    		var altoNuevo = ventana.window.innerHeight*2;
+	    	if (anchoNuevo<=ventana.window.screen.availWidth &&
+	        	altoNuevo<=ventana.window.screen.availHeight) {
+	    		ventana.resizeBy(ventana.window.innerWidth,ventana.window.innerHeight);
+	    	}
+	    }
+
+		function reducir(){
+	    	if (ventana.window.innerWidth>=180 && 
+	    		ventana.window.innerHeight>=110) {
+	    		var anchoNuevo = ventana.window.innerWidth/2;
+	    		var altoNuevo = ventana.window.innerHeight/2;
+	    		ventana.resizeBy(-anchoNuevo, -altoNuevo);
+	      }
+	    }
+
+		function irArriba(){
+			ventana.moveBy(0,-50);
+		}
+
+		function irAbajo(){
+			ventana.moveBy(0, 50);
+		}
+
+		function irDerecha(){
+			ventana.moveBy(50, 0);
+		}
+
+		function irIzquierda(){
+			ventana.moveBy(-50, 0);
+		}
+
+		function centrar(ventana){
+			ventana.moveTo(ventana.screen.availWidth/2 - ventana.outerWidth/2, ventana.screen.availHeight/2 - ventana.outerHeight/2);
+		}
+
+
+	</script>
+</head>
+<body>
+
+	
+<br /><br />
+<input type="button" value="Nueva ventana" onclick="abrirVentana()" />
+<input type="button" value="Detener ventana" onclick="parar()" />
+</body>
+</html> 

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Eventos</title> 
+</head>
+<style type="text/css">
+.linea{
+	height:100px; 
+	width:100px; 
+	background:blue;
+	display:inline-block;
+}
+</style>
+<script type="text/javascript">
+	window.onload = iniciar;
+
+	function iniciar(){
+		let eDivs = document.getElementsByTagName("div");
+		for (let i=0;i<eDivs.length; i++){
+			let elemento = eDivs[i];
+			elemento.addEventListener("click", pintarRojo);
+			elemento.addEventListener("mouseover", pintarVerde);
+			elemento.addEventListener("mouseout", pintarAzul);
+		}
+	}
+
+	function pintarRojo(){
+		pintar(this, "red");
+	}
+
+	function pintarAzul(){
+		pintar(this, "blue");
+	}
+
+	function pintarVerde(){
+		pintar(this, "green");
+	}
+
+	function pintar(elemento, color){
+		elemento.style.backgroundColor = color;
+	}
+
+</script>
+<body>
+	<div class="linea">ASR31</div>
+	<div class="linea">ASR32</div>
+	<div class="linea">SM21</div>
+	<div class="linea">SM22</div>
+	<div class="linea">DW31</div>
+	<div class="linea">DW32</div>
+</body>
+</html>

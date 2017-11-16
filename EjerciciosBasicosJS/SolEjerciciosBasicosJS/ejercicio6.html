@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 6</title>
+	<script type="text/javascript">
+		let frase = prompt("dame una frase");
+		let totalVocales = 0;
+		for (let i = 0; i<frase.length ; i++){
+			let letra = frase[i];
+			if( 'a'===letra || letra === 'A' ||
+				'e'===letra || letra === 'E' ||
+				'i'===letra || letra === 'I' ||
+				'o'===letra || letra === 'O' ||
+				'u'===letra || letra === 'U' ){
+				console.log(letra);
+				totalVocales++;
+			}
+			
+		}
+		console.log("en la frase hay " + totalVocales + " vocales");
+		
+	</script>
+</head>
+<body>	
+</body>
+</html>

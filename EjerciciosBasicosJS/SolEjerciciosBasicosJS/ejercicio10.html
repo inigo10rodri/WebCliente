@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 9</title>
+	<script type="text/javascript">
+		var numero1 = parseInt(prompt("dame un número"));
+		var numero2 = parseInt(prompt("dame un número"));
+		var numeroPeque;
+
+		if (numero1<numero2){
+			numeroPeque = numero1;
+		}
+		else {
+			numeroPeque = numero2;
+		}
+
+		for (var divisor=2;divisor<=numeroPeque;divisor++){
+			if( (numero1%divisor==0) && (numero2%divisor==0)){
+				console.log(divisor);
+			}
+		}
+	</script>
+</head>
+<body>	
+</body>
+</html>

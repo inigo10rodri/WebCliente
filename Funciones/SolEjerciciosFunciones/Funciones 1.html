@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1</title>
+	<script type="text/javascript">
+
+		let frase = prompt("escribe una frase");
+		letras(frase);
+		
+		// funcion que cuenta el número de letras mayusculas y minusculas de una frase
+		function letras(frase){
+			let numLetras = 0, numMayusculas = 0, numMinusculas = 0;
+			for (let i=0;i<frase.length;i++){
+				let caracter = frase[i];
+				if(esLetra(caracter)){
+					numLetras++;
+					if (esMayuscula(caracter)){
+						numMayusculas++;
+					}
+					else {
+						numMinusculas++;
+					}
+				}
+			}
+
+			console.log(frase);
+			console.log("el número de letras es " + numLetras);
+			console.log("el número de letras mayúsuclas es " + numMayusculas);
+			console.log("el número de letras minúsculas es " + numMinusculas);
+		}
+
+		// devuelve true si el caracter es una letra, si no false
+		function esLetra(caracter){
+			if ('a' <= caracter.toLowerCase() && caracter.toLowerCase() <= 'z'){
+				return true;
+			}
+			return false;
+		} 
+
+		// devuelve true si el la letra es mayuscula, si no false
+		function esMayuscula(letra){
+			return (letra === letra.toUpperCase());
+		}
+		
+	</script>
+</head>
+<body>	
+</body>
+</html>

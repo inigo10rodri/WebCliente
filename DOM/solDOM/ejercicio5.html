@@ -1,0 +1,51 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<title>Ver todos los párrafos</title> 
+<style type="text/css">
+ #cuadro { width: 400px; height: 200px; border: 1px black solid; float: right; }
+ p { font-size: 1em; font-family: arial; }
+</style>
+<script>
+
+  function copiarParrafo(parrafo){
+    borrar();
+    let cuadro = document.getElementById("cuadro");
+    let parrafoCopia = document.createElement("p");
+    parrafoCopia.textContent = parrafo.textContent;
+    cuadro.appendChild(parrafoCopia);
+  }
+
+  function acceder(){
+    borrar();
+    let cuadro = document.getElementById("cuadro");
+    let parrafos = document.querySelectorAll("body > p");
+    //let parrafos = document.getElementsByTagName("p");
+    for (let i=0;i<parrafos.length;i++){
+      let parrafo = parrafos[i];
+      let parrafoCopia = document.createElement("p");
+      parrafoCopia.textContent = parrafo.textContent;
+      cuadro.appendChild(parrafoCopia);
+    }
+  }
+
+  function borrar(){
+    let cuadro = document.getElementById("cuadro");
+    while(cuadro.firstChild){
+      cuadro.removeChild(cuadro.firstChild);
+    }
+  }
+</script>
+</head>
+<body>
+ <h1>Acceso a los párrafos</h1>
+ <div id="cuadro"></div>
+ <p onclick="copiarParrafo(this)">Este es el primer párrafo de esta página</p>
+ <p onclick="copiarParrafo(this)">Este es el segundo párrafo</p>
+ <p onclick="copiarParrafo(this)">Y este el tercero</p>
+ <p onclick="acceder()">Pulsa en este cuarto párrafo para volver 
+   a verlos todos en el recuadro de la derecha.</p>
+   <p onclick="borrar()">Y pulsa en el quinto para borrar el 
+     recuadro de la derecha.</p> 
+   </body>
+   </html>

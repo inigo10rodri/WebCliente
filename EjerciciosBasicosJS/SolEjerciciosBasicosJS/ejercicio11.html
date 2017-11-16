@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1</title>
+	<script type="text/javascript">
+		let frase = prompt("dame una frase");
+		
+		let contadorLetras = 0;
+		let contadorMayus = 0;
+		let contadorMinus = 0;
+		for (let i = 0; i<frase.length ; i++){
+			let caracter = frase.charAt(i);
+
+			if(esLetra(caracter)){
+				contadorLetras++;
+				if(esMayuscula(caracter)){
+					contadorMayus++;
+				}
+				else {
+					contadorMinus++;
+				}
+			}
+		}
+		console.log("el número de letras es " + contadorLetras);
+		console.log("el número de mayúsculas es " + contadorMayus);
+		console.log("el número de minúsculas es " + contadorMinus);
+
+		function numLetras(frase){
+			let contadorLetras = 0;
+			for (let i = 0; i<frase.length ; i++){
+				let caracter = frase.charAt(i);
+				if(esLetra(caracter)){
+					contadorLetras++;
+				}
+			}
+			return contadorLetras;
+		}
+
+		function esLetra(caracter){
+			if (('a' <= caracter && caracter <= 'z') ||
+				('A' <= caracter && caracter <= 'Z') ){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		function esMayuscula(caracter){
+			//if (('A' <= caracter && caracter <= 'Z') ){
+			if (caracter === caracter.toUpperCase()){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	</script>
+</head>
+<body>	
+</body>
+</html>

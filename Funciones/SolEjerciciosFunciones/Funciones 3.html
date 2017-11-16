@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1</title>
+	<script type="text/javascript">
+
+		const letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+
+		let dni = parseInt(prompt("dame un dni"));
+		comprobarDNI(dni);
+
+		// funcion que valida un DNI
+		function comprobarDNI(dni){
+			if (esDNIValido(dni)){
+				console.log("la letra del DNI es: " + letraDNI(dni));
+			}
+			else{
+				console.log("no es un DNI válido");
+			}
+		}
+
+		// función que comprueba si un DNI es valido
+		function esDNIValido(dni){
+			if (!isNaN(dni) && 0<=dni && dni<=99999999){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		// funcion que devuelve la letra de un DNI válido
+		function letraDNI(dni){
+			let indice = dni % 23;
+			return letras[indice];
+		}
+		
+	</script>
+</head>
+<body>	
+</body>
+</html>

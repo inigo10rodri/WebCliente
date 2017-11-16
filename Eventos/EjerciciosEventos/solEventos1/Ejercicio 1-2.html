@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Eventos</title> 
+  <script>
+  	window.onload = iniciar; 
+
+  	function iniciar(){
+  		let parrafos = document.getElementsByTagName("p");
+  		for (let i=0;i<parrafos.length;i++){
+  			let eParrafo = parrafos[i];
+  			eParrafo.style.fontSize = "16px";
+  			eParrafo.addEventListener("click", aumentar);
+  		}
+  	}
+
+  	function aumentar(){
+  		let fontSize = this.style.fontSize;
+  		fontSize = fontSize.replace("px","");
+  		this.style.fontSize = (parseInt(fontSize) + 1) + "px";
+  	}
+
+  	function aumentar2(){
+  		let fontSize = window.getComputedStyle(this,null).getPropertyValue("font-size");
+  		fontSize = fontSize.replace("px","");
+  		this.style.fontSize = (parseInt(fontSize) + 1) + "px";
+  	}
+  </script>
+</head>
+
+<body>
+   <p>Este texto debe aumentar de tamaño</p>
+   <p>Este texto debe aumentar de tamaño</p>
+   <p>Este texto debe aumentar de tamaño</p>
+</body>
+</html>

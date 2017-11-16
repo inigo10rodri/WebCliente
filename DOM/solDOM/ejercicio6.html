@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+   <title>Manipular nodos</title> 
+<style type="text/css">
+   #cuadro  { width: 400px; height: 250px; border: 1px black solid; float: right; 
+            font-family: arial; overflow: auto }
+   p  { font-size: 1em; font-family: arial;  }
+</style>
+<script type="text/javascript">
+  
+  //restaurar el estado inicial de la caja
+  function restaurar(){
+    borrar();
+    let cuadro = document.getElementById("cuadro");
+    let titulos = ["Primer texto fijo", "Segundo texto fijo", "Tercer texto fijo"];
+    let ids = ["primero" , "segundo", "tercero"];
+    for (let i=0;i<titulos.length;i++){
+      let h4 = document.createElement("h4");
+      h4.id = ids[i];
+      h4.textContent = titulos[i];
+      cuadro.appendChild(h4);
+    }
+  }
+
+  //Insertar nuevo elemento debajo de todos
+  function debajo(){
+    let elemento = document.createElement("h4");
+    elemento.textContent = "Nuevo elemento debajo";
+    let cuadro = document.getElementById("cuadro");
+    cuadro.appendChild(elemento);
+  }
+
+  //Insertar nuevo elemento delante del segundo
+  function delante(){
+    let elemento = document.createElement("h4");
+    elemento.textContent = "Nuevo elemento delante";
+    let cuadro = document.getElementById("cuadro");
+    cuadro.insertBefore(elemento, cuadro.children[1]);
+  }
+
+  //reemplazar el primer elemento de la caja por otro nuevo
+  function reemplazar(){
+    let elemento = document.createElement("h4");
+    elemento.textContent = "Nuevo elemento reemplazar";
+    let cuadro = document.getElementById('cuadro');
+    cuadro.replaceChild(elemento, cuadro.children[0]);
+  }
+
+  //Suprimir el tercer párrafo
+  function suprimir(){
+    let elementos = document.getElementById("cuadro").children;
+    elementos[2].parentNode.removeChild(elementos[2]);
+  }
+
+  //Poner el segundo texto en último lugar
+  function cambiar(){
+    let cuadro = document.getElementById('cuadro');
+    let elementos = cuadro.children;
+    let copiaElemento = elementos[1].cloneNode(true); 
+    cuadro.appendChild(copiaElemento);
+    elementos[1].parentNode.removeChild(elementos[1]);
+  }
+
+  // copia todos los elementos que tienen el texto "Nuevo"
+  function copiar(){
+    let cuadro = document.getElementById('cuadro');
+    let elementos = document.querySelectorAll("h4");
+    for (var i = 0; i < elementos.length; i++) {
+      let elemento = elementos[i];
+      if (elemento.textContent.indexOf("Nuevo")>=0){
+        cuadro.appendChild(elemento.cloneNode(true));
+      }
+    }
+  }
+
+  // borra el contenido del cuadro
+  function borrar(){
+    let cuadro = document.getElementById("cuadro");
+    while(cuadro.firstChild){
+      cuadro.removeChild(cuadro.firstChild);
+    }
+  }
+
+</script>
+</head>
+<body>
+  <h1>Manipulación  de nodos. </h1>
+  <div id="cuadro">
+     <h4 id="primero">Primer texto fijo</h4>
+     <h4 id="segundo">Segundo texto fijo</h4>
+     <h4 id="tercero">Tercer texto fijo</h4>
+  </div>
+     <p>Pulsa en los siguientes párrafos, para cambiar los textos de la caja de la derecha</p>
+     <p onclick="restaurar()">Pulsa en este párrafo para restaurar el estado inicial de la caja.</p>
+     <p onclick="debajo()">Insertar nuevo elemento debajo de todos</p>
+     <p onclick="delante()">Insertar nuevo elemento delante del segundo.</p>
+     <p onclick="reemplazar()">reemplazar el primer elemento de la caja por otro nuevo</p>
+     <p onclick="suprimir()">Suprimir el tercer párrafo</p>
+     <p onclick="cambiar()">Poner el segundo texto en último lugar</p>
+     <p onclick="copiar()">Copia del nuevo elemento, se inserta al final</p>
+</body>
+</html>

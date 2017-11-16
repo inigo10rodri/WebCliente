@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1-1</title>
+
+	<script type="text/javascript">
+
+		window.onload = iniciar;
+
+		function iniciar(){
+			for (let i=1;i<=3;i++){
+				let eBoton = document.createElement("input");
+				eBoton.value = i;
+				eBoton.type = "button";
+				eBoton.addEventListener("click", mostrarOpcion);
+				document.body.appendChild(eBoton);
+			}
+		}
+
+		function mostrarOpcion(event){
+			console.log("has pulsado el botón " + this.value);
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

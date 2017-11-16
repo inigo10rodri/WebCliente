@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1</title>
+	<script type="text/javascript">
+
+		let numero = parseInt(prompt("escribe una frase"));
+		let mensaje = esPar(numero);
+		console.log(mensaje);
+		
+		// devuelve un mensaje indicando si el numero es par o no
+		function esPar(numero){
+			let mensaje = "";
+			if (numero % 2 === 0){
+				mensaje = "El número " + numero + " es par";
+			}
+			else {
+				mensaje = "El número " + numero + " es impar";
+			}
+			return mensaje;
+		}
+		
+	</script>
+</head>
+<body>	
+</body>
+</html>

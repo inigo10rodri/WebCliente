@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ejer2</title>
+</head>
+<script type="text/javascript">
+	var http;
+
+	window.onload=iniciar;
+
+	function iniciar(){
+		http=new XMLHttpRequest();
+		var url="index.php";
+		http.open('GET', url,true);
+		http.onreadystatechange=leerXML;
+		http.send(null);
+	}
+
+	function leerXML(){
+		if (http.readyState==4){
+			if(http.status=200){
+				var documento=http.responseXML;
+				crearTabla(documento);
+			}else{
+				alert("Error:"+http.statusText);
+			}
+		}
+	}
+	function crearTabla(xml){
+		var peliculas = xml.getElementsByTagName("Peliculas");
+		var eTabla= document.createElement('table');
+		eTabla.style.border="1px solid";
+
+		var hDirector = document.createElement('th');
+		hDirector.textContent="Director";
+
+		var hTitulo = document.createElement('th');
+		hTitulo.textContent="Titulo";
+
+		var trHeader = document.createElement('tr');
+		trHeader.appendChild(hDirector);
+		trHeader.appendChild(hTitulo);
+		eTabla.appendChild(trHeader);
+
+
+		for(let i=0;i<peliculas.length;i++){
+			var pelicula=peliculas[i];
+			var eDirector=pelicula.children[0];
+			var eTitulo=pelicula.children[1];
+			var director=eDirector.textContent;
+			var titulo=eTitulo.textContent;
+
+			var eTR = document.createElement('tr');
+			eTR.appendChild(crearTD(director));
+			eTR.appendChild(crearTD(titulo));
+			eTabla.appendChild(eTR);
+		}
+		document.body.appendChild(eTabla);
+	}
+	function crearTD(contenido){
+		var eTD = document.createElement("td");
+		eTD.style.border = "1px solid";
+		eTD.textContent=contenido;
+		return eTD;
+	}
+</script>
+<body>
+
+</body>
+</html>

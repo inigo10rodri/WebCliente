@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 4</title>
+	<script type="text/javascript">
+
+		const vocales = ['a', 'e', 'i', 'o', 'u'];
+
+		let frase = prompt("dame una frase");
+		let numVocales = contarVocales(frase);
+		console.log("en la frase hay " + numVocales + " vocales");
+
+		// funcion que cuenta las vocales que hay en una frase
+		function contarVocales(fraseArray){
+			let contadorVocales = 0;
+			for (let i=0; i<fraseArray.length; i++){
+				let caracter = fraseArray[i];
+				if (esVocal(caracter)){
+					contadorVocales++;
+				}
+			}
+			return contadorVocales;
+		}
+
+		// comprueba si un caracter es una vocal
+		function esVocal(caracter){
+			caracter = caracter.toLowerCase();
+			return vocales.indexOf(caracter) != -1;
+		}
+		
+	</script>
+</head>
+<body>	
+</body>
+</html>

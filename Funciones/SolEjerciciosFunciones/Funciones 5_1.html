@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 5-1</title>
+	<script type="text/javascript">
+
+		let frase = prompt("dame una frase");
+		if(esPalindroma(frase)){
+			console.log("la frase es palíndroma");
+		}
+		else {
+			console.log("la frase NO es palíndroma");
+		}
+
+
+		// funcion que dice si una frase es palíndroma
+		function esPalindroma(frase){
+
+			frase = soloLetras(frase);
+			let fraseReves = copiarReves(frase);
+
+			for (let i=0; i<frase.length/2; i++){
+				if( frase[i] !== fraseReves[i]){
+					return false;
+				}
+			}
+			return true;
+		}
+
+		// devuelve una copia de la frase introducida al revés
+		function copiarReves(frase){
+			let fraseReves = frase.split("");
+			return fraseReves.reverse();
+		}
+
+		// devuelve el string introducido pero dejando solo las letras en minúscula
+		function soloLetras(frase){
+			let fraseResultado = "";
+			for(let i=0;i<frase.length;i++){
+				let letra = frase.charAt(i);
+				if (esLetra(letra)){
+					fraseResultado += letra;
+				}
+			}
+			fraseResultado = fraseResultado.toLowerCase();
+			return fraseResultado;
+		}
+
+		// dice si el caracter pasado es una letra de la "a" a la "z"
+		function esLetra(caracter){
+			caracter = caracter.toLowerCase();
+			if ("a" <= caracter && caracter <= "z"){
+				return true;
+			}
+			return false;
+		}
+		
+	</script>
+</head>
+<body>	
+</body>
+</html>
