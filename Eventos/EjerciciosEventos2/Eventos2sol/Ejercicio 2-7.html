@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript">
+		
+		window.onload = iniciar;
+
+		function iniciar(){
+			window.addEventListener("mousemove", pintarMargenes);
+		}
+
+		function pintarMargenes(event){
+
+			var totalX = window.innerWidth;
+			var totalY = window.innerHeight;
+			
+			var x10 = totalX * 0.1;
+			var y10 = totalY * 0.1;
+			var x20 = totalX * 0.2;
+			var y20 = totalY * 0.2;
+
+			var ratonX = event.clientX;
+			var ratonY = event.clientY;
+
+			if ( (ratonX <= x10 || ratonX >= (totalX-x10)) ||
+				 (ratonY <= y10 || ratonY >= (totalY-y10)) ){			
+			 	document.body.style.backgroundColor = "red";
+			}
+			else if ( (ratonX <= x20 || ratonX >= (totalX-x20)) ||
+				 	  (ratonY <= y20 || ratonY >= (totalY-y20)) ){
+				document.body.style.backgroundColor = "yellow";
+			}
+			else {
+				document.body.style.backgroundColor = "green";
+			}
+		}
+
+	</script>
+</head>
+<body>
+</body>
+</html>

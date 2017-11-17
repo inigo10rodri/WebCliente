@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8"/>
+<head>
+	<script type="text/javascript">
+
+		var ventana, timeOut;
+
+		function crearVentana(){
+			ventana = window.open("", "","height=200px,width=200px");
+			timeOut = setTimeout(cerrarVentana, 5000);
+			ventana.addEventListener("click", resetTimeOut);
+			ventana.addEventListener("mouseover", resetTimeOut);
+			ventana.addEventListener("mousemove", resetTimeOut);
+		}
+
+		function resetTimeOut(event){
+			clearTimeout(timeOut);
+			timeOut = setTimeout(cerrarVentana, 5000);
+		}
+
+		function cerrarVentana(){
+			ventana.close();
+		}
+
+	</script>
+</head>
+<body>
+<button onclick="crearVentana()">Crear Ventana</button>
+</body>
+</html>

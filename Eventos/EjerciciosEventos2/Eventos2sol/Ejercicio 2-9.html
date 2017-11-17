@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    div { 
+      position:  absolute;
+      width: 150px; 
+      height: 150px;
+      background-color: orange;
+      border: 2px  solid rgba(0,0,0,0.5); 
+      border-radius: 4px; padding: 8px;
+    }
+
+  </style>
+  <script type="text/javascript">
+
+    var clicked = false, clickX, clickY;
+
+    window.onload = iniciar;
+
+    function iniciar(){
+      document.body.style.height = window.screen.availHeight;
+      document.body.addEventListener("mousemove", mover);
+      var eDiv = document.getElementById('desplazable'); 
+      eDiv.addEventListener("mousedown", iniciarMover);
+      eDiv.addEventListener("mouseup", detener);
+    }
+
+    function mover(event){     
+      if (clicked) {
+        var eDiv = document.getElementById('desplazable'); 
+        eDiv.style.left = (event.clientX + clickX) + "px";
+        eDiv.style.top = (event.clientY + clickY) + "px";
+        eDiv.style.backgroundColor = "lightblue";
+      }
+    }
+
+    function iniciarMover(event){
+      clicked = true;
+      var style = window.getComputedStyle(this, null);
+      clickX = parseInt(style.getPropertyValue("left")) - event.clientX;
+      clickY = parseInt(style.getPropertyValue("top")) - event.clientY;
+    }
+
+    function detener(event){
+      clicked = false;
+      event.target.style.backgroundColor = "orange";
+    }
+
+
+  </script>
+</head>
+<body>
+  <div id="desplazable"></div>
+</body>
+</html>

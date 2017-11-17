@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8"/>
+<head>
+	<script type="text/javascript">
+
+		const MAX_LETRAS = 14;
+
+		window.onload = iniciar;
+
+		function iniciar(){
+			document.getElementById("descripcion").addEventListener("keypress", contar);
+			document.getElementById("descripcion").addEventListener("keyup", actualizarContador);
+		}
+
+		function contar(event){
+			let eDescripcion = document.getElementById("descripcion");
+			let numCaracteres = eDescripcion.value.length;
+			if (numCaracteres === MAX_LETRAS && !permitida(event.key)){
+				event.preventDefault();
+			}
+		}
+
+		function actualizarContador(){
+			let eDescripcion = document.getElementById("descripcion");
+			let numCaracteres = eDescripcion.value.length;
+			let eLetras = document.getElementById("letras");
+			eLetras.textContent = (14 - numCaracteres) + "/14 caracteres";
+		}
+
+		function permitida(tecla){
+			switch (tecla){
+				case "Backspace":
+				case "Delete":
+				case "F5":
+					return true;
+				default:
+					return false;
+			}
+		}
+	</script>
+</head>
+<body>
+<div align="center">
+<textarea id="descripcion" cols="40" rows="3" name="descripcion"></textarea></br>
+<span id="letras">14/14 caracteres</span>
+</div>
+</body>
+</html>

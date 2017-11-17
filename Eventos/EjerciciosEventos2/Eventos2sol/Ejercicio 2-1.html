@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		window.onload = iniciar;
+
+		function iniciar(){
+			let colors = document.getElementById('parrafo');
+			colors.addEventListener('click', cambiarColor);
+			colors.addEventListener('dblclick', cambiarColor);
+		}
+
+		function cambiarColor(event){
+			if (event.type === 'click'){
+				this.style.color='blue';
+			} else if(event.type === 'dblclick'){
+				this.style.color='red';
+				console.log("dblclick");
+			}
+		}
+
+
+
+	</script>
+</head>
+<body>
+	<p id="parrafo">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt ex eu tincidunt finibus. Suspendisse potenti. Aliquam in ornare risus. Aenean commodo sem at ipsum ullamcorper, in tempor lorem faucibus. Phasellus non hendrerit velit, id volutpat nulla. Nullam id quam sit amet mauris accumsan semper accumsan in urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer elementum vestibulum dignissim. Suspendisse at facilisis urna. Nulla facilisi. Maecenas congue, augue in blandit faucibus, nisi leo egestas eros, in posuere tellus massa sit amet ligula. Morbi eget erat sapien. Duis vulputate gravida lorem eu vestibulum.		
+	</p>
+</body>
+</html>
