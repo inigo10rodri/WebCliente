@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8"/>
+	<title>Formularios 1</title>
+
+	<!--
+
+	1.	Crear una página con un formulario que nos pedirá nombre, apellidos y dirección en diferentes cuadros de texto. Al pulsar el botón comprobar deberá mostrarnos en pantalla un alert con los datos introducidos. Si algún campo no está rellenado deberá alertarnos de ello.
+
+	-->
+
+	<script type="text/javascript">
+
+		window.onload = init;
+
+		// asocia los eventos necesarios
+		function init() {
+			document.getElementById("formulario").addEventListener("submit", validar);
+		}
+
+		// si hay algún campo vacío, muestra un mensaje de aviso, si no muestra los datos rellenados
+		function validar(event){
+			let mensajeVacios = comprobarVacios();
+			
+			if(mensajeVacios !== ""){
+				event.preventDefault();
+				alert(mensajeVacios);
+			}
+			else {
+				mostrarDatos();
+			}
+		}
+
+		// comprueba si hay campos vacíos y devuelve un mensaje con el aviso
+		function comprobarVacios(){
+			let mensajeVacios = "";
+			let elementos = document.getElementById("formulario").elements;
+			for (let i=0;i<elementos.length;i++){
+				let eInput = elementos[i];
+				if (eInput.type === "text" && eInput.value === ""){
+						mensajeVacios += "El campo " + eInput.name + " está vacío.\n";
+				}
+			}
+			return mensajeVacios;
+		}
+
+		// muestra un alert con los datos introducidos
+		function mostrarDatos(){
+			let mensaje = "Los datos introducidos son:\n";
+			let elementos = document.getElementById("formulario").elements;
+			for (let i=0;i<elementos.length;i++){
+				let eInput = elementos[i];
+				if (eInput.type === "text"){
+					mensaje += eInput.value + "\n";
+				}
+			}
+			alert(mensaje);
+		}
+	</script>
+</head>
+<body>
+<form id="formulario">
+	<label>Nombre</label><input type="text" name="nombre" />
+    <label>Apellidos</label><input type="text" name="apellidos" />
+    <label>Dirección</label><input type="text" name="direccion" />
+	<input type="submit" name="comprobar" value="Comprobar"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<title>Ejercicio 2</title>
+</head>
+<script>
+
+	window.onload = iniciar;
+
+	function iniciar(){
+		var http = new XMLHttpRequest();
+		var url = "index.php";
+		http.open("GET", url, true);
+		http.onreadystatechange = function () {
+			if (http.readyState == 4) {
+				// Se ha recibido la respuesta.
+				if(http.status==200) {
+					// Aquí escribiremos lo que queremos que
+					// se ejecute tras recibir la respuesta
+					var documento = http.responseXML;
+					var peliculas = documento.getElementsByTagName("Pelicula");
+					var numPeliculas = peliculas.length;
+					var eTabla = document.createElement("table");
+					eTabla.style.border = "1px solid";
+					var eTR;
+					for (let i=0;i<peliculas.length;i++){
+						if (i % 2 == 0){
+							eTR = document.createElement("tr");
+						}
+						var eTD = document.createElement("td");
+						eTD.style.border = "1px solid";
+						var p = document.createElement("p");
+						p.textContent = "Director:" + peliculas[i].children[0].textContent;
+						eTD.appendChild(p);
+						var p = document.createElement("p");
+						p.textContent = "Título:" + peliculas[i].children[1].textContent;
+						eTD.appendChild(p);
+						eTR.appendChild(eTD);
+						eTabla.appendChild(eTR);
+					}
+					document.body.appendChild(eTabla);
+					
+				} else {
+					// Ha ocurrido un error
+					alert("Error:"+http.statusText);
+				}
+			}
+		};
+		http.send(null);
+	}
+</script>
+
+<body>
+</body>
+
+</html>

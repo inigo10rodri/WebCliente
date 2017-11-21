@@ -20,12 +20,16 @@
     function posicionRaton(event) {
         let posRatonX = event.clientX;
         let posRatonY=event.clientY;
-        let posRaton10 = anchura * 0.1;
-        let posRaton20 = anchura * 0.2;
-        if (posRatonX < posRaton10 || posRatonX >= (anchura-posRaton10)) {
+
+        let posRatonX10 = anchura * 0.1;
+        let posRatonX20 = anchura * 0.2;
+        let posRatonY10 = altura * 0.1;
+        let posRatonY20 = altura * 0.2;
+        
+        if (posRatonX < posRatonX10 || posRatonX >= (anchura-posRatonX10)||posRatonY < posRatonY10 || posRatonY >= (altura-posRatonY10)) {
             document.getElementById("contenido").style.backgroundColor = 'red';
         }        
-        else if (posRatonX <= posRaton20 || posRatonX >= (anchura-posRaton20)) {    
+        else if (posRatonX <= posRatonX20 || posRatonX >= (anchura-posRatonX20)||posRatonY <= posRatonY20 || posRatonY >= (altura-posRatonY20)) {    
             document.getElementById("contenido").style.backgroundColor = 'yellow';
         }else {
            document.getElementById("contenido").style.backgroundColor = 'green'; 

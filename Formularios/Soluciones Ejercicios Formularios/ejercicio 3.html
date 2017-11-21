@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8"/>
+	<title>Formularios 3</title>
+
+	<!--
+
+	3.	Crea una página con un formulario que simulara la pagina de ayuda de cualquier web. Deberá pedirnos nombre y apellidos, habrá un área de texto para comentar nuestro problema (que tendrá un límite de 100 caracteres), teléfono (que solo aceptara números) y un campo de e-mail (que deberá tener formato de email). Si no se cumplen los requisitos no dejara enviar el formulario.
+
+	-->
+
+	<style type="text/css">
+		.error {
+			border: red 1px solid;
+		}
+
+		.correcto {
+			border: black 1px solid;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		window.onload = init;
+
+		// asocia los eventos necesarios
+		function init() {
+			let formulario = document.getElementById("formulario");
+			formulario.addEventListener("submit", validar);
+			formulario.elements["problema"].addEventListener("keypress", longitudMax);
+		}
+
+		// previene escribir más caracteres de los permitidos en el campo "problema"
+		function longitudMax(event){
+			if (this.value.length === 100){
+				alert("El tamaño máximo del campo es 100.");
+				event.preventDefault();
+			}
+		}
+
+		// comprueba si el formulario está rellenado correctamente
+		function validar(event){
+			let formulario = document.getElementById("formulario");
+			for (let i=0;i<formulario.elements.length;i++){
+				let elemento = formulario.elements[i];
+				if(esIncorrecto(elemento)){
+					elemento.className = "error";
+					event.preventDefault();
+				}
+				else {
+					elemento.className = "correcto";
+				}
+			}
+		}
+
+		// dice si el campo es incorrecto en funcion del tipo de campo
+		function esIncorrecto(elemento){
+			if(elemento.name === "nombre" || elemento.name === "apellidos" || elemento.name === "problema"){
+				return estaVacio(elemento);
+			}
+			else if (elemento.name === "telefono"){
+				return telefonoIncorrecto(elemento);
+			}
+			else if (elemento.name === "email"){
+				return emailIncorrecto(elemento);
+			}
+		}
+
+		// comprueba si el campo está vacío
+		function estaVacio(campo){
+			if (campo.value.length === 0) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		// comprueba si el campo cumple los requisitos de un número de telefono
+		function telefonoIncorrecto(campo){
+			if (campo.value.length < 9 || isNaN(campo.value)){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		// comprueba si el campo cumple los requisitos de un email válido
+		function emailIncorrecto(campo){
+			if (  campo.value.indexOf("@") < 0 ||
+				 (campo.value.indexOf("@") > campo.value.lastIndexOf(".") ) 
+				){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+	</script>
+</head>
+<body>
+
+<form id="formulario">
+	<p><label>Nombre</label><input type="text" name="nombre"></p>
+    <p><label>Apellidos<input type="text" name="apellidos"></label></p>
+    <p><label>Problema</label><textarea name="problema" cols="40" rows="5"></textarea></p>
+    <p><label>Telefono</label><input type="text" name="telefono"></p>
+    <p><label>Email</label><input type="text" name="email"></p>
+    <input type="submit" value="Enviar"></button>
+</form>
+
+</body>
+</html>

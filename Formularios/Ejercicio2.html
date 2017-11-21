@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ejer 2</title>
     <script type="text/javascript">
-        
+        window.onload=iniciar;
+        function iniciar(){
+            document.getElementById("formulario").addEventListener("submit",cambiarColor);
+        }
         function cambiarColor(event){
             event.preventDefault();
             let cuadrados=document.getElementsByClassName("cuadrado");
@@ -34,7 +37,7 @@
     </style>
 </head>
 <body> 
-	<form id="formulario" onsubmit="return cambiarColor(event)">
+	<form id="formulario">
 
         <select id="selCuadrado">
             <option value="default">Selecciona el cuadrado</option>
@@ -48,7 +51,7 @@
             <option value="default">Selecciona el color</option>
 	        <option value = "red">Red</option>
    			<option value = "orange">Orange</option>
-   			<option value = "yallow">Yellow</option>
+   			<option value = "yellow">Yellow</option>
    			<option value = "green">Green</option>
 	    </select>
         

@@ -1,0 +1,119 @@
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<title>Ejercicio 4</title>
+</head>
+<script>
+
+	var http, xmlPeliculas;
+
+	window.onload = iniciar;
+
+	function iniciar(){
+		var selectDirectores = document.getElementById("directores");
+		selectDirectores.addEventListener("change", cargarPeliculas);
+		var selectPeliculas = document.getElementById("peliculas");
+		selectPeliculas.addEventListener("change", cargarSinopsis);
+		var boton = document.getElementById("boton");
+		boton.addEventListener("click", directores);		
+	}
+
+	function directores(){
+		http = new XMLHttpRequest();
+		var url = "index.php";
+		http.open("GET", url, true);
+		http.onreadystatechange = cargarDirectores;
+		http.send(null);
+	}
+
+	function cargarDirectores () {
+		if (http.readyState === 4) {
+			// Se ha recibido la respuesta.
+			if(http.status === 200) {
+				// Aquí escribiremos lo que queremos que
+				// se ejecute tras recibir la respuesta
+				var select = document.getElementById("directores");
+				xmlPeliculas = http.responseXML;
+				var directores = xmlPeliculas.getElementsByTagName("Director");
+				for (let i=0;i<directores.length;i++){
+					var director = directores[i];
+					if(esNuevoDirector(director.textContent, select)){
+						var eOption = document.createElement("option");
+						eOption.value = director.textContent;
+						eOption.textContent = director.textContent;
+						select.appendChild(eOption);
+					}
+				}
+				
+			} else {
+				// Ha ocurrido un error
+				alert("Error:"+http.statusText);
+			}
+		}
+	}
+
+	function esNuevoDirector(director, select){
+		var options = select.children;
+		for (var i=0;i<options.length;i++){
+			if (options[i].textContent === director){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	function cargarPeliculas(){
+		var direcSelect = document.getElementById("directores").value;
+		var selectPelis = document.getElementById("peliculas");
+		vaciarSelect(selectPelis);
+		var peliculas = xmlPeliculas.getElementsByTagName("Pelicula");
+		for (var i=0;i<peliculas.length;i++){
+			var direPeli = peliculas[i].getElementsByTagName("Director")[0].textContent;
+			if (direPeli === direcSelect){
+				var eOption = document.createElement("option");
+				eOption.value = peliculas[i].getElementsByTagName("sinopsis")[0].textContent;
+				eOption.textContent = peliculas[i].getElementsByTagName("Titulo")[0].textContent;
+				selectPelis.appendChild(eOption);
+			}
+		}
+		cargarSinopsis();
+	}
+
+	function vaciarSelect(select){
+		while (select.children.length>0) {
+	        select.remove(0);
+	    }	
+	}
+
+	function cargarSinopsis(){
+		var pelicula = document.getElementById("peliculas").value;
+		var http = new XMLHttpRequest();
+		var url = "sinopsis.php?fichero="+pelicula;
+		http.open("GET", url, true);
+		http.onreadystatechange = function () {
+			if (http.readyState === 4) {
+				// Se ha recibido la respuesta.
+				if(http.status === 200) {
+					// Aquí escribiremos lo que queremos que
+					// se ejecute tras recibir la respuesta
+					var parrafo = document.getElementById("sinopsis");
+					var documento = http.responseText;
+					parrafo.textContent = documento;						
+				} else {
+					// Ha ocurrido un error
+					alert("Error:"+http.statusText);
+				}
+			}
+		};
+		http.send(null);
+	}
+</script>
+
+<body>
+	<input type="button" id="boton" name="cargar" value="Cargar"/>
+	<select id="directores"></select>
+	<select id="peliculas"></select>
+	<p id="sinopsis"></p>
+</body>
+</html>

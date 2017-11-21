@@ -6,7 +6,9 @@
    #cuadro { width: 400px; height: 200px; border: 1px black solid; float: right; }
    p { font-size: 1em; font-family: arial; }
 </style>
-<script type="text/javascript">  
+<script type="text/javascript"> 
+  var anadirParrafos= document.querySelectorAll("p");
+  var cuadro= document.getElementById("cuadro"); 
   function anadir(indice){
     cuadro.appendChild(anadirParrafos[indice]);
   }
@@ -38,9 +40,5 @@
          a verlos todos en el recuadro de la derecha.</p>
      <p onclick="borrar()">Y pulsa en el quinto para borrar el 
          recuadro de la derecha.</p>
-     <script>
-       var anadirParrafos= document.querySelectorAll("p");
-       var cuadro= document.getElementById("cuadro");
-     </script>
 </body>
 </html>

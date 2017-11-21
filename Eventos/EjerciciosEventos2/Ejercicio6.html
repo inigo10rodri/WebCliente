@@ -9,29 +9,23 @@
 
 		window.onload = iniciar;
 
-		function iniciar(){
-			let boton=document.getElementById("boton");
-			boton.addEventListener("click", crearVentana);
-		}
-
 		function crearVentana(){
 			openWindow=window.open("","_blank","width=200, height=200");
 			timeout=setTimeout(cerrarVentana,3000);	
-			openWindow.addEventListener('mousemove', moverClickRaton);
-			openWindow.addEventListener('click', moverClickRaton);
+			openWindow.addEventListener('mousemove', resetTimeOut);
+			openWindow.addEventListener('click', resetTimeOut);
 		}
-		function moverClickRaton(event){
+		function resetTimeOut(event){
 			clearTimeout(timeout);
 			timeout=setTimeout(cerrarVentana,3000);
 		}
 
 		function cerrarVentana(){
-			openWindow.close()
-;			
+			openWindow.close();			
 		}
 	</script>
 </head>
 <body>
-	<input type="button" value="Nueva pagina" id="boton">
+	<input type="button" value="Nueva pagina" onclick="crearVentana()" ">
 </body>
 </html>

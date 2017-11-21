@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8"/>
+	<title>Formularios 4</title>
+
+	<!--
+
+	4.	Crea una página con un formulario que nos pedirá datos personales cada uno en un cuadro de texto: nombre, apellidos, dirección, población, código postal, provincia. Ordena los campos de manera  que queden en dos columnas. Al final del formulario habrá un botón de enviar y otro de limpiar el formulario. Al iniciar la página el cuadro de texto del nombre deberá tener el puntero listo para escribir y cuando pulsemos la tecla enter saltara al siguiente campo. En caso de que no se haya rellenado el campo deberá  poner el fondo rojo y no permitirá pulsar el botón de envió.
+
+	-->
+
+	<style type="text/css">
+        .rojo {
+            background-color: red;
+        }
+    </style>
+	<script type="text/javascript">
+
+		window.onload = init;
+
+		// asocia los eventos necesarios
+		function init() {
+			let formulario = document.getElementById("formulario");
+			formulario.addEventListener("reset", reset);
+			iniciarEventos(formulario.elements);
+		}
+
+		// asocia los eventos a los elementos
+		function iniciarEventos(elementos){
+			for (let i=0;i<elementos.length;i++){
+				var elemento = elementos[i];
+				if(elemento.type==="text"){
+		            elemento.addEventListener("keypress", siguienteCampo);
+		            elemento.addEventListener("focus", validarCampos);
+		            if(elemento.name === "nombre"){
+		            	elemento.focus();
+		            }
+		        }
+			}
+		}
+
+		// pasa al siguiente campo al pulsar "Enter"
+		function siguienteCampo(event) {
+	        if (event.key === "Enter") {
+	            event.preventDefault();
+				let elementos = document.getElementById("formulario").elements;
+	            for (var i=0; i<elementos.length;i++){
+	                if (elementos[i] === this && i!=elementos.length-1){
+	                    elementos[i+1].focus();
+	                }
+	            }
+	        } else {
+	            this.style.backgroundColor="white";
+	        }
+	    }
+
+	    // comprueba si hemos dejado campos vacíos y los pone de rojo. Si están todos rellenos, habilita el botón enviar
+	    function validarCampos(event) {
+	    	let elementos = document.getElementById("formulario").elements;
+	        let dejarEnviar = true;
+	        for (var i = 0; i < elementos.length; i++) {
+	        	// solo comprobamos los campos anteriores al campo actual
+                if(elementos[i] === this){
+                	break;
+                }
+	            if (elementos[i].type === "text" && elementos[i].value === "") {
+	            	elementos[i].style.backgroundColor = "red";
+	                dejarEnviar = false;
+	            }
+	        }
+	        
+	        if (dejarEnviar) {
+	            formulario.elements["enviar"].disabled = false;
+	        } else {
+	            formulario.elements["enviar"].disabled = true;
+	        }
+	    }
+
+	    // vuelve al estado inicial, con los campos en blanco, el foco en "nombre" y el botón "enviar" deshabilitado
+	    function reset(event){
+	    	let elementos = document.getElementById("formulario").elements;
+	    	for (let i=0;i<elementos.length;i++){
+				var elemento = elementos[i];
+				if(elemento.type==="text") {	
+		            elemento.style.backgroundColor = "white";
+					if(elemento.name === "nombre"){
+			            elemento.focus();
+			        }
+				}
+		    }
+	    	document.getElementById("formulario").elements["nombre"].focus();
+	    	document.getElementById("formulario").elements["enviar"].disabled = true;
+		}
+	</script>
+</head>
+<body>
+
+<form id="formulario">
+	<table>
+		<tr>
+			<td><label>Nombre</label><input type="text" name="nombre"></td>
+    		<td><label>Apellidos</label><input type="text" name="apellidos"></td>
+    	</tr>
+    	<tr>
+    		<td><label>Direccion</label><input type="text" name="direccion"></td>
+    		<td><label>Poblacion</label><input type="text" name="poblacion"></td>
+    	</tr>
+    	<tr>
+    		<td><label>Código Postal</label><input type="text" name="codigoPostal"></td>
+    		<td><label>Provincia</label><input type="text" name="provincia"></td>
+    	</tr>
+    </table>
+	<td><button type="submit" name="enviar">enviar</button></td>
+	<td><button type="reset">reset</button></td>
+</form>
+
+</body>
+</html>

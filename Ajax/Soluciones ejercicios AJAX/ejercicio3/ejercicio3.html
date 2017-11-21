@@ -1,0 +1,75 @@
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<title>Ejercicio 3</title>
+	<style type="text/css">
+		img {
+			width: 150px;
+			height: 225px;
+		}
+	</style>
+</head>
+<script>
+
+	window.onload = iniciar;
+
+	function iniciar(){
+		var http = new XMLHttpRequest();
+		var url = "index.php";
+		http.open("GET", url, true);
+		http.onreadystatechange = function () {
+			if (http.readyState === 4) {
+				// Se ha recibido la respuesta.
+				if(http.status === 200) {
+					// Aquí escribiremos lo que queremos que
+					// se ejecute tras recibir la respuesta
+					var divIMG = document.getElementById("imagenes");
+					var documento = http.responseXML;
+					var peliculas = documento.getElementsByTagName("Pelicula");
+					for (let i=0;i<peliculas.length;i++){
+						var eIMG = document.createElement("img");
+						eIMG.id = peliculas[i].getElementsByTagName("sinopsis")[0].textContent;
+						eIMG.src = "imagenes/" + peliculas[i].getElementsByTagName("imagen")[0].textContent;
+						eIMG.addEventListener("click", sinopsis);
+						divIMG.appendChild(eIMG);						
+					}
+					
+				} else {
+					// Ha ocurrido un error
+					alert("Error:"+http.statusText);
+				}
+			}
+		};
+		http.send(null);
+	}
+
+	function sinopsis(){
+		var pelicula = this.id;
+		var http = new XMLHttpRequest();
+		var url = "sinopsis.php?fichero="+pelicula;
+		http.open("GET", url, true);
+		http.onreadystatechange = function () {
+			if (http.readyState === 4) {
+				// Se ha recibido la respuesta.
+				if(http.status === 200) {
+					// Aquí escribiremos lo que queremos que
+					// se ejecute tras recibir la respuesta
+					var parrafo = document.getElementById("sinopsis");
+					var documento = http.responseText;
+					parrafo.textContent = documento;						
+				} else {
+					// Ha ocurrido un error
+					alert("Error:"+http.statusText);
+				}
+			}
+		};
+		http.send(null);
+	}
+</script>
+
+<body>
+	<div id="imagenes"></div>
+	<p id="sinopsis"></p>
+</body>
+</html>
