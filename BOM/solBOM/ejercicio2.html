@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejer2</title>
+	<script type="text/javascript">
+		window.onload=iniciar;
+		function iniciar(){
+			let boton=document.getElementById('boton');
+			boton.addEventListener('click',anadirInfo);
+			
+		}
+		function anadirInfo(){
+			let parrafos=document.getElementsByTagName('p');
+			let url=document.createTextNode(document.URL);
+
+			let historial=document.createTextNode(history.length);
+			let puedeNavegar=document.createTextNode('Puede navegar');
+			let error=document.createTextNode('No puede');
+			if (historial<=10){
+				parrafos[5].appendChild(puedeNavegar);
+			}else{
+				parrafos[5].appendChild(error);
+			}
+
+
+
+			parrafos[0].appendChild(url);
+		}
+	</script>
+</head>
+<body>
+	<div id="parrafos">
+		<p>Url:</p>
+		<p>Navegador:</p>
+		<p>Titulo:</p>
+		<p>Formularios:</p>
+		<p>Tamaño ventana:</p>
+		<p>Historial:</p>
+	</div>
+	<input type="button" value="Mostrar info" id="boton">
+	
+</body>
+</html>

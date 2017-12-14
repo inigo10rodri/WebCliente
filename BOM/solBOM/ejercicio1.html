@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejer1</title>
+	<script type="text/javascript">
+		window.onload=iniciar;
+		function iniciar(){
+			let boton=document.getElementById('boton');
+			boton.addEventListener('click',crearDiv);
+		}
+		function crearDiv(){
+			let nuevoDiv=document.createElement('div');
+			let texto=document.createTextNode('Nuevo div');
+			nuevoDiv.appendChild(texto);
+			document.body.appendChild(nuevoDiv);
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<input type="button" id="boton" value="Nuevo div">
+	</div>
+	
+</body>
+</html>

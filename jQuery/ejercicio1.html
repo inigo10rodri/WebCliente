@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejerc1</title>
+	<script src="jquery-3.2.1.js"></script>
+	<script>
+		$(document).ready(
+			function(){
+				$("#pulsar").click(
+					function(){
+						$("#parrafo").fadeToggle(1000);
+					}
+				);
+				$("#anadir").click(
+					function(){
+						$('body').append('<p>Nuevo elemento</p>');
+						//$('#elemento').after('<p>Nuevo elemento</p>');
+					}
+				);
+			});
+		function nuevoElemento(){
+			var texto="Nuevo elemento";
+			$('<div/'),{
+				id:'foo',
+				class:'verde',
+				href:'http://google.com',
+				title:'Become a googler',
+				rel:'external',
+				text:texto
+			}).appendTo('body');	
+		}
+	</script>	
+
+	<style type="text/css">
+		#pulsar{
+			cursor:pointer;
+		}
+		#parrafo{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<p id="pulsar">Mostrar/Ocultar texto:</p>
+	<p id="anadir">Añadir elemento:</p>
+	<p id="parrafo">Texto oculto</p>
+</body>
+</html>

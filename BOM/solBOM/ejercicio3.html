@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejer3</title>
+	<script type="text/javascript">
+
+		var ventana;
+		
+		function crearVentana(){
+			ventana=window.open('','','width = 200,height = 200' );
+
+			crearBoton('arriba',irArriba);
+		}
+		function crearBoton(nombre,funcion){
+			let boton=document.createElement('input');
+			boton.type="button";
+			boton.value=nombre;
+			boton.onclick=funcion;
+			ventana.document.body.appendChild(boton);
+
+		}
+		function irArriba(){
+			ventana.moveBy(0,-10);
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="Nueva ventana" onclick="crearVentana()">
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejer3</title>
+	<script type="text/javascript">
+		let ventana;
+		function crearVentana(){
+			ventana=window.open('', '','width=200,height = 200');
+
+			crearBoton('arriba',irArriba);
+		}
+		function crearBoton(nombre,funcion){
+			let boton=document.createElement('input');
+			boton.type="button";
+			boton.value=nombre;
+			boton.onclick=funcion;
+			ventana.document.body.appendChild(boton);
+		}
+		function irArriba(){
+			ventana.moveBy(0,-10);
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="Crear Ventana" onclick="crearVentana()">
+</body>
+</html>

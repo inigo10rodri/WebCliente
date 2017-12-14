@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ejer3</title>
+	<script type="text/javascript">
+		window.onload = iniciar;
+		function iniciar(){
+			let enlaces=document.getElementsByTagName('a');
+			for(let i=0;i<enlaces.length;i++){
+				enlaces[i].addEventListener('mouseover', mostrarEnlace);
+			}
+		}
+		function mostrarEnlace(){
+			let parrafo=document.getElementById('parrafo');
+			parrafo.textContent=this.href;
+		}
+	</script>
+</head>
+<body>
+<ul>
+	<li><a  href="www.google.es">Google</a></li>
+	<li><a  href="www.github.com">Github</a></li>
+	<li><a  href="www.facebook.com">Facebook</a></li>
+</ul>
+<p id="parrafo"></p>
+</body>
+</html>
