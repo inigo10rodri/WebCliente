@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+		// Supongamos:
+		var img1 = document.querySelector('.img-1');
+
+		img1.addEventListener('load', function() {
+		  // woo yey image loaded
+		});
+
+		img1.addEventListener('error', function() {
+		  // argh everything's broken
+		});
+
+		// Problema: Es posible que los eventos ocurran antes de que comencemos a escucharlos
+
+
+		// que queremos conseguir:
+		img1.llamarAquiSiImgCargadaOCuandoCargue(function() {
+		  // Cargada
+		}).siHayErrorAlCargar(function() {
+		  // error
+		});
+
+/*
+
+Fundamentalmente, las promesas se parecen un poco a los receptores de eventos, a excepción de lo siguiente:
+
+- Una promesa solo puede completarse con éxito o fallar una vez. 
+  No puede completarse con éxito o fallar dos veces, ni puede pasar de exitoso a fallido ni viceversa.
+- Si una promesa se ha completado con éxito o ha fallado y luego agregas un callback de exitoso/fallido, 
+  se llamará al callback correcto, a pesar de que el evento haya sucedido antes.
+
+*/
+
+		////////////**********************************/////////////////
+
+		// Promise: ejemplo generico
+		var promise = new Promise(function(resolve, reject) {
+		  // hacemos algo, seguramente asincrono...
+
+		  if (/* todo ha funcionado bien */) {
+		    resolve("Ha funcionado!");
+		  }
+		  else {
+		    reject(Error("Uppsss esto no funciona"));
+		  }
+		});
+
+
+		promise.then(function(result) {
+		  console.log(result); // "Exito!"
+		}, function(err) {
+		  console.log(err); // Error: "No funciona"
+		});
+
+		////////////**********************************/////////////////
+
+		// ejemplo con AJAX
+
+		function get(url) {
+		  // Devuelve una promesa:
+		  return new Promise(function(resolve, reject) {
+		    // Codigo para la llamda AJAX:
+		    var req = new XMLHttpRequest();
+		    req.open('GET', url);
+
+		    req.onload = function() {
+		      if (req.status == 200) {
+		        // Resolvemos la promesa con el texto de la respuesta
+		        resolve(req.response);
+		      }
+		      else {
+		        // Si no, lo rechazamos creando un Error con el statusText de la peticion
+		        reject(Error(req.statusText));
+		      }
+		    };
+
+		    // Tratamos errores de red
+		    req.onerror = function() {
+		      reject(Error("Network Error"));
+		    };
+
+		    // Hacemos la llamada
+		    req.send();
+		  });
+		}
+
+
+		// Usar de la funcion
+		var promesa = get('miURL');
+		promesa.then(
+			function(response) {
+			  console.log("Exito!", response);
+			}, 
+			function(error) {
+			  console.error("Ha habido un error!", error);
+			});
+	</script>
+</head>
+<body>
+<p>Más infomación en :</p>
+<a href="https://developers.google.com/web/fundamentals/primers/promises?hl=es">
+https://developers.google.com/web/fundamentals/primers/promises?hl=es</a>
+</body>
+</html>
