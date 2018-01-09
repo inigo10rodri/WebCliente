@@ -12,7 +12,7 @@
     text: text
   }).appendTo('body');  
   
-  //Seleccionar los asientos de la zona POPULAR y mostrarlos en pantalla.
+  //2- Seleccionar los asientos de la zona POPULAR y mostrarlos en pantalla.
   let ul = $("<ul/>",{
   id:"lista2"
   }).appendTo("body");
@@ -24,18 +24,34 @@
     text : texto1
   }).appendTo("#lista2");
   });;
-  //Mostrar en rojo todos los asientos 3 de todas las filas.
-  $("#asientos > ul > li >li:eq(2)").css({"color":"red"});
+  //3-Mostrar en rojo todos los asientos 3 de todas las filas.
+  $("#asientos > ul > li >ul>li:nth-child(3)").css({"color":"red"});
 
-  //Mostrar en rojo todos los asientos de la zona VIP y poner el texto de “FILA COMPLETA” en la descripción de la fila.
-
-  //Muestra en pantalla el número de asientos que están libres todavía (no están en rojo).
-
-  //Seleccionar todos los asientos pares y marcarlos como reservados (en color azul).
-
-  //Anadir un fila nueva al final del todo, con sus correspondientes asientos.
-
-  //Borrar los asientos de la zona VIP, y renombrar atributo id de las filas y adecuar el texto de los asientos.
+  //4- Mostrar en rojo todos los asientos de la zona VIP y poner el texto de “FILA COMPLETA” en la descripción de la fila.
+  $("#row_1>ul>li").css({"color":"red"});
+  let asientos= $("#row_1>ul");
+  $("#row_1").text('Fila Completa');
+  $(asientos).appendTo("#row_1");
+  /*
+  $("#row_1").html(
+    $("#row_1").html.replace("FILA Libre","FILA COMPLETA")
+  );
+  */
+  //5- Muestra en pantalla el número de asientos que están libres todavía (no están en rojo).
+  let asientosLibres=0;
+  $("#asientos ul li ul li").each(function(){
+    if($(this).css("color")=="rgb(0,0,0)"){
+      asientosLibres++;
+    }
+  });
+  $("body").append("Asientos libres: "+asientosLibres);
+  //6- Seleccionar todos los asientos pares y marcarlos como reservados (en color azul).
+  $("#asientos ul li ul li:even").css({"background-color":"blue","color":"black"});
+  //7- Anadir una fila nueva al final del todo, con sus correspondientes asientos.
+  //let fila=$("#")
+  //8- Borrar los asientos de la zona VIP, y renombrar atributo id de las filas y adecuar el texto de los asientos.
+  //$("#asientos>#zona_vip").remove();
+  //$("")
   });
 </script>
 </head>
