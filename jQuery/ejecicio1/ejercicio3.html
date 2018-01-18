@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>Ejercicios JQuery</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			jQuery(document).ready(function($) {
+				//1- Añadir al elemento "h1" que tiene el nombre del vuelo, el nombre de vuelo asignado que sera “815 Oceanic”.
+				$("h1 i").text(" 815 Oceanic");
+				
+				//2- Guarda en tres variables los parámetros principales del vuelo (la hora de salida, la puerta de salida y el destino), si no tiene asignada todavía nada, almacena el valor "Sin asignar".
+				let $hSalida=$("#time td");
+				let $pSalida=$("#gate td");
+				let $dSalida=$("#arrives td");
+
+				if($hSalida.text().length==""||$pSalida.text().length==""||$dSalida.text().length==""){
+					$hSalida.text("Sin asignar");
+					$pSalida.text("Sin asignar");
+					$dSalida.text("Sin asignar");
+				}
+				//3-Añade entre paréntesis la hora de actualización de los paneles "Logística" y "Pasajeros". Después de cada actualización (ejercicio) se deberán actualizar las horas.
+				let hora=$.now();
+				let nuevaFecha=new Date(hora);
+				$("h2").append("("+nuevaFecha+")");
+				//4-Tendremos tres clases diferentes para los pasajeros que hayan embarcado, esten pendientes y no hallan embarcado (elegir colores y características que queráis).
+				$('ul li').addClass('embarcado').css('color', 'green').removeClass('pendientes','noembarcados');
+				$('ul li').addClass('pendientes').css('color', 'yellow').removeClass('noembarcados','embarcado');
+				$('ul li').addClass('noembarcados').css('color', 'red').removeClass('pendientes','embarcado');
+				//5- Añadir a los pasajeros cuyo nombre no empiece por "J" la clase de embarcados. Todos los demás estarán pendientes todavía.
+				let nombres=$('ul li');
+				//if(nombres.text()=="J%"){
+				$('ul li').addClass('embarcado');
+				//}				
+				//6- Añadir características al vuelo (puerta, hora y destino).
+				$('#time td').text("11:00");
+				$('#gate td').text("4");
+				$('#arrives td').text("Berlin");
+				//7- Marcar como embarcados a todos los pasajeros que quedan sin hacerlo excepto "Charlie Pace", que estara “no embarcado”.
+				
+			});
+		</script>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		<h1>Vuelo<i> sin especificar </i></h1>
+		<h2>Logistica</h2>
+		<table id="logistics">
+			<tbody>
+				 <tr id="time">
+					 <th>Hora:</th>
+					 <td></td>
+				 </tr>
+				 <tr id="gate">
+					 <th>Puerta:</th>
+					 <td></td>
+				 </tr>
+				 <tr id="arrives">
+					 <th>Destino:</th>
+					 <td></td>
+				 </tr>
+			</tbody>
+		</table>
+		<h2>Pasajeros</h2>
+		<ul>
+			 <li>Jack Shephard</li>
+			 <li>Kate Austin</li>
+			 <li>James “Sawyer” Ford</li>
+			 <li>John Locke</li>
+			 <li>Hugo “Hurley” Reyes</li>
+			 <li>Benjamin Linus</li>
+			 <li>Charlie Pace</li>
+			 <li>Juliet Burke</li>
+		</ul>
+	</body>
+</html>

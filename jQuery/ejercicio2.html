@@ -1,11 +1,10 @@
 <html>
 <head>
 <title>Practice with jquery</title>
-<script src="jquery-3.2.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   jQuery(document).ready(function($) {
   //1- Seleccionar los asientos de la zona VIP y mostrarlos en pantalla.
-
   let text= $("#asientos #zona_vip #row_1 ul li").text();
   $('<div/>',{
     id:'hola',
@@ -16,7 +15,6 @@
   let ul = $("<ul/>",{
   id:"lista2"
   }).appendTo("body");
-
   $("#asientos #zona_popular #row_2 ul li").each(function(index, el) {
   let texto1 = el.textContent;
   $("<li/>",{
@@ -26,7 +24,6 @@
   });;
   //3-Mostrar en rojo todos los asientos 3 de todas las filas.
   $("#asientos > ul > li >ul>li:nth-child(3)").css({"color":"red"});
-
   //4- Mostrar en rojo todos los asientos de la zona VIP y poner el texto de “FILA COMPLETA” en la descripción de la fila.
   $("#row_1>ul>li").css({"color":"red"});
   let asientos= $("#row_1>ul");
@@ -40,18 +37,28 @@
   //5- Muestra en pantalla el número de asientos que están libres todavía (no están en rojo).
   let asientosLibres=0;
   $("#asientos ul li ul li").each(function(){
-    if($(this).css("color")=="rgb(0,0,0)"){
+    if($(this).css("color")==="rgb(0,0,0)"){
       asientosLibres++;
     }
   });
   $("body").append("Asientos libres: "+asientosLibres);
   //6- Seleccionar todos los asientos pares y marcarlos como reservados (en color azul).
-  $("#asientos ul li ul li:even").css({"background-color":"blue","color":"black"});
+  $("#asientos ul li ul li:nth-child(even)").css({"background-color":"blue","color":"black"});
   //7- Anadir una fila nueva al final del todo, con sus correspondientes asientos.
-  //let fila=$("#")
+  $("<li/>",{
+    id: 'fila',
+    text : 'Fila nueva'
+  }).appendTo("body");
+  $("#fila").append('<ul></ul>');
+  for(let i=1;i<=5;i++){
+    $("#fila ul").append('<li> asiento 5-'+i+'</li>');
+  }
   //8- Borrar los asientos de la zona VIP, y renombrar atributo id de las filas y adecuar el texto de los asientos.
-  //$("#asientos>#zona_vip").remove();
-  //$("")
+  $("#asientos>#zona_vip").remove();
+  $("#row_2").attr("id",'row_1');
+  $("#row_3").attr("id",'row_2');
+  $("#row_4").attr("id",'row_3');
+  
   });
 </script>
 </head>
