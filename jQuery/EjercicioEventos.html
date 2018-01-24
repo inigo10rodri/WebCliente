@@ -10,7 +10,7 @@
 			//Los enlaces, que apuntaran a la web de zubiri, no se abrirán y se avisara con un alert de que se ha bloqueado el enlace.
 			//Al pasar el ratón por encima de los li estos se les añadirá una clase que modifique el aspecto del texto.
 			//Al hacer clic en el algún elemento div, se borrara el contenido completo de estos y se añadirá el texto de “BORRADO!!”
-			$("parrafo1").click(function(){
+			$("#parrafo1").click(function(){
 				$(this).remove();
 			});
 			$("a").click(function(event) {
@@ -20,27 +20,65 @@
 			$("li").mouseenter(function(event) {
 				$(this).addClass('changeText').css({"color":"red"});
 			});
-			$("div").click(function(event) {
+			$("#primerDiv").click(function(event) {
 				$(this).text("BORRADO");
 			});
 			//2. Crea un formulario con 6 cuadros de texto, divididos en dos párrafos. Cada vez que un cuadro de texto tenga el foco deberá resaltar su borde en color rojo, y el párrafo al que pertenece deberá resaltar el color de fondo en azul.
-			$("input").focus(function(event) {
+			$("form p input").focus(function(event) {
 				$(this).css({'borderColor':'red'});
 				$(this).parent().css({'backgroundColor':'blue'});
 			});
 			//3. Crear una página con varios párrafos y diferentes imágenes. Cuando se intente hacer clic con el botón derecho en alguna imagen deberá alertarnos de que esa acción está prohibida. Cuando seleccionemos parte del texto aparecerá otro alert diciéndonos que también está prohibido.
-			$("p img").contextmenu(function(event){
+			$("div p img").contextmenu(function(event){
 				event.preventDefault();
 				alert("Esa accion esta prohibida");
 			});
-			$("p").click(function(event) {
+			$("div p").click(function(event) {
 				alert("Tambien esta prohibido");				
 			});
 			//4. Crea una página con 4 cuadrados (div) que estén pegados entre si haciendo un cuadrado mas grande. Cuando pasemos el ratón por encima de ellos, se escribirá en la página en que cuadrado se encuentra el ratón actualmente y desde cual ha entrado.
 			$(".divs").css({'width':'100px','height':'100px','background-color':'red','float':'left','margin':'1px'});
 			$(".div").css({'width':'150px','height':'150px','background-color':'red','float':'left','margin':'1px'});
+			$("#ejercicio4 div").mouseenter(function(event) {
+				let divId=$(this).attr("id");
+				$("#parrafoEnter").text("Has entrado en el "+divId);
+			});
+			$("#ejercicio4 div").mouseleave(function(event) {
+				let divId=$(this).attr("id");
+				$("#parrafoLeave").text("Has entrado desde el "+divId);
+			});
 			//5.Crea una página en la que mostraremos un menú del día, con sus primeros, segundos y postres. Como es un menú del día solo podremos elegir un plato de cada sección, con lo que los elegiremos mediante unos radio buttons. Cuando marquemos un plato el texto del mismo deberá ponerse en cursiva. Por ultimo habrá un checkbox que marcaremos si queremos tomar café. Al pulsar el botón "Pedir" se mostrará un resumen del menú seleccionado al final de la página.
+			$("#pedir").click(function(event) {
+				let primero=$("input:radio[name=primeros]:checked").val();
+				let segundo=$("input:radio[name=segundos]:checked").val();
+				let postre=$("input:radio[name=postres]:checked").val();
+				let cafe=false;
+				if( $('input:checkbox[name=cafe]').is(':checked') ) {
+    				cafe=true;
+				}
+				$("#ejercicio5").submit();
+				alert("Primer plato: "+primero+"\nSegundo plato: "+segundo+"\nPostre: "+postre+"\nCafe: "+cafe)
+			});
 			//6.Crear una página con un solo textarea. Cuando escribamos lo que sea, vigilará el número de vocales que estemos introduciendo. Si es par, el fondo de la página será azul cielo, si es impar, será de color naranja chillón.
+			$("textarea").keyup(function(event) {
+				let textareaTexto=$("textarea").val();
+				let contadorVocales=0;
+				for(i=0;i<textareaTexto.length;i++){
+					let caracter=textareaTexto[i];
+					if(caracter === "a" || caracter === "e" || caracter === "i" || caracter === "o" || caracter === "u" ||caracter === "A" || caracter === "E" || caracter === "I" || caracter === "O" || caracter === "U"){
+						contadorVocales++;
+					}					
+				}
+				if (contadorVocales%2===0) {
+					$("body").css({
+						'background-color': 'blue',
+					});
+				}else{
+					$("body").css({
+						'background-color': 'orange',
+					});
+				}
+			});
 		});
 	</script>
 </head>
@@ -48,7 +86,7 @@
 	<p id="parrafo1">hola</p>
 	<a href="http://www.google.com">ZubiriManteo</a>
 	<li>Nuevo li</li>
-	<div>Zubiri manteo</div>
+	<div id="primerDiv">Zubiri manteo</div>
 	<form>
 		<p> Primer parrafo<br>
 			<input type="text">
@@ -61,18 +99,42 @@
 			<input type="text">
 		</p>
 	</form>
-	<p>Primer parrafo<br>
+	<div>
+		<p>Primer parrafo<br>
 		<img src="agujero.jpg" width="100px" height="100px">
-	</p>
-	<p>Segundo parrafo<br>
-		<img src="agujero.jpg" width="100px" height="100px">
-	</p>
-	<p>Tercer parrafo<br>
-		<img src="agujero.jpg" width="100px" height="100px">
-	</p>
-	<div class="divs" id="div1"></div>
-	<div class="divs" id="div2"></div>
-	<div class="divs" id="div3"></div>
-	<div class="div" id="div4"></div>
+		</p>
+		<p>Segundo parrafo<br>
+			<img src="agujero.jpg" width="100px" height="100px">
+		</p>
+		<p>Tercer parrafo<br>
+			<img src="agujero.jpg" width="100px" height="100px">
+		</p>
+	</div>	
+	<div id="ejercicio4">
+		<div class="divs" id="div1"></div>
+		<div class="divs" id="div2"></div>
+		<div class="divs" id="div3"></div>
+		<div class="div" id="div4"></div>
+		<p id="parrafoEnter"></p>
+		<p id="parrafoLeave"></p>
+	</div>
+	<br><br><br><br><br><br><br><br><br>
+	<form id="ejercicio5">
+		<label>Primeros platos</label><br>
+		<input type="radio" name="primeros" value="Macarrones">Macarrones<br>
+		<input type="radio" name="primeros" value="Sopa">Sopa<br>
+		<label>Segundos platos</label><br>
+		<input type="radio" name="segundos" value="Chuleta">Chuleta<br>
+		<input type="radio" name="segundos" value="Pollo">Pollo<br>
+		<label>Postres</label><br>
+		<input type="radio" name="postres" value="Tarta">Tarta<br>
+		<input type="radio" name="postres" value="Natillas">Natillas<br>
+		<input type="checkbox" name="cafe" value="Café">Café<br>
+		<button id="pedir">Pedir</button>
+	</form>
+	<div id="ejercicio6">
+		<textarea></textarea>
+	</div>
+		
 </body>
 </html>
