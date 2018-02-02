@@ -96,7 +96,7 @@
 		function mostrarPalabraJuego(){
 			var parrafo = document.getElementById("palabraAciertos");
 			for (var i=0;i<palabraJuego.length;i++){
-				//parrafo.append(palabraJuego[i]);
+				parrafo.append(palabraJuego[i]);
 				parrafo.textContent = parrafo.textContent + palabraJuego[i];
 			}
 		}
@@ -109,27 +109,17 @@
 
 		// Ejercicio 6
 		function actualizarAciertos(letra){
-			let letraEncontrada=false;
-			for(var i=0;i<palabraAdivinar.length;i++){
-				if(letra===palabraAdivinar[i]){
-					palabraJuego[i]= letra + " ";
-					letraEncontrada=true;
-				}
-			}
-			return letraEncontrada;
+
 		}
 
 		// Ejercicio 7
 		function actualizarPalabraJuego(){
-			document.getElementById('palabraAciertos').textContent="";
-			mostrarPalabraJuego();
+
 		}
 
 		// Ejercicio 8
 		function actualizarLetrasError(letra){
-			document.getElementById('letrasErroneas').append(letra);
-			let elemento=document.getElementById('hangman');
-			elemento.src="https://examenjs.000webhostapp.com/imagenes/hangman"+errores+".png"
+
 		}		
 
 		// Ejercicio 9
