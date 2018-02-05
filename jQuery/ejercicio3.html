@@ -22,20 +22,23 @@
 				let nuevaFecha=new Date(hora);
 				$("h2").append("("+nuevaFecha+")");
 				//4-Tendremos tres clases diferentes para los pasajeros que hayan embarcado, esten pendientes y no hallan embarcado (elegir colores y características que queráis).
-				$('ul li').addClass('embarcado').css('color', 'green').removeClass('pendientes','noembarcados');
-				$('ul li').addClass('pendientes').css('color', 'yellow').removeClass('noembarcados','embarcado');
-				$('ul li').addClass('noembarcados').css('color', 'red').removeClass('pendientes','embarcado');
+				$('ul li').addClass('embarcados').css('color', 'green').removeClass('pendientes','noembarcados');
+				$('ul li').addClass('pendientes').css('color', 'yellow').removeClass('noembarcados','embarcados');
+				$('ul li').addClass('noembarcados').css('color', 'red').removeClass('pendientes','embarcados');
 				//5- Añadir a los pasajeros cuyo nombre no empiece por "J" la clase de embarcados. Todos los demás estarán pendientes todavía.
-				let nombres=$('ul li');
-				//if(nombres.text()=="J%"){
-				$('ul li').addClass('embarcado');
-				//}				
+				let nombresJ=$("ul li:contains('J')");
+				if(nombresJ==false){
+					nombresJ.addClass('embarcados');
+				}else{
+					nombresJ.addClass('pendientes');
+				}			
 				//6- Añadir características al vuelo (puerta, hora y destino).
 				$('#time td').text("11:00");
 				$('#gate td').text("4");
 				$('#arrives td').text("Berlin");
 				//7- Marcar como embarcados a todos los pasajeros que quedan sin hacerlo excepto "Charlie Pace", que estara “no embarcado”.
-				
+				$("ul li:contains('J')").addClass('embarcados');
+				$("ul li:contains('Charlie Pace')").addClass('noembarcados');
 			});
 		</script>
 		<style type="text/css">
