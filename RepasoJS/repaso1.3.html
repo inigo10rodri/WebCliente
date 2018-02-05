@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer3</title>
+	<script type="text/javascript">
+		//Pedir que se introduzcan caracteres por teclado ($ para terminar) y visualizar el número de aes introducidas (mayúsculas o minúsculas)
+		let texto= prompt("Introduce caracteres($ para terminar):");
+		let contadorAes=0;
+		let i=0;
+		do{
+			for(i=0;i<texto.length;i++){
+			 	if(texto[i]==="A"||texto[i]==="a"){
+					contadorAes++;
+				}
+			}
+			console.log(contadorAes);
+		}while(texto[i]!=="$");
+	</script>
+</head>
+<body>
+
+</body>
+</html>
