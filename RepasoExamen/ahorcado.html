@@ -57,7 +57,7 @@
 			cargarLetras();
 			valorInicialJuego();
 			mostrarPalabraJuego();
-			//window.addEventListener("keypress", letraTeclado);
+			window.addEventListener("keypress", letraTeclado);
 		}
 
 		// Ejercicio 1
@@ -156,12 +156,23 @@
 
 		// Ejercicio 10
 		function letraTeclado(event){
-
+			let letraIntroducida=event.key.toUpperCase();
+			if(letraValida(letraIntroducida)===true){
+				comprobarLetra(letraIntroducida);
+			}else{
+				alert("Esa letra no vale");
+			}
 		}
 
 		// Ejercicio 10
 		function letraValida(letra){
-			
+			let letraBuena=false;
+			for(let i=0;i<alfabeto.length;i++){
+				if(letra===alfabeto[i]){
+					letraBuena=true;
+				}
+			}
+			return letraBuena;
 		}
 
 		// Ejercicio 11
