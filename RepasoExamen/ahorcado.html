@@ -134,7 +134,24 @@
 
 		// Ejercicio 9
 		function comprobarPartidaTerminada(){
-
+			let contadorLetras=0;
+			for(let i=0;i<palabraJuego.length;i++){
+				if(palabraJuego[i]!=="- "){
+					contadorLetras++;
+				}
+			}
+			if(contadorLetras===palabraJuego.length){
+					alert("Has ganado!");
+			}
+			//let terminado=true;
+			//for(let i=0;i<palabraJuego.length;i++){
+				//if(palabraJuego[i]!=="- "){
+					//terminado=false;
+				//}
+			//}
+			//if(terminado){
+					//alert("Has ganado!");
+			//}
 		}
 
 		// Ejercicio 10
