@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer4</title>
+	<script type="text/javascript">
+		//Aceptar números por teclado hasta que se introduzca un 0 y visualizar cuántos pares e impares se han introducido en la secuencia.
+		let numeros=parseInt(prompt("Introduce numeros:"));
+		let contadorPares=0;
+		let contadorImpares=0;
+		while(numeros!==0){
+			if(numeros%2===0){
+				contadorPares++;
+			}else{
+				contadorImpares++;
+			}
+			numeros=parseInt(prompt("Introduce numeros:"));
+		}
+		console.log("Pares: "+contadorPares+" Impares: "+contadorImpares);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

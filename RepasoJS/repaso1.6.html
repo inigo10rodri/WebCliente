@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer6</title>
+	<script type="text/javascript">
+		//Leer números positivos por teclado y escribir el máximo y el mínimo. Parar al leer el cero o un número negativo.
+		let numerosPositivos=parseInt(prompt("Introduce numeros positivos:"));
+		let numMax=0;
+		let numMin=0;
+		while(numerosPositivos>0){
+			if(numerosPositivos>numMax && numerosPositivos>numMin){
+				numMax=numerosPositivos;
+			}else if(numerosPositivos<numMax&&numerosPositivos<numMin){
+				numMin=numerosPositivos;
+			}
+			numerosPositivos=parseInt(prompt("Introduce numeros positivos:"));
+		}
+		console.log("Max: "+numMax+" Min: "+numMin);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
