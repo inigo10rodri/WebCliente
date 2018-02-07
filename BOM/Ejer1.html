@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejer1</title>
+	<style type="text/css">
+		#botonDiv{
+			background-color: red;
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+		function anadirDiv(){
+			let MIN=0;
+			let MAX=255;
+			var rgb1= Math.floor(Math.random()*(MAX-MIN)+MIN);
+			var rgb2= Math.floor(Math.random()*(MAX-MIN)+MIN);
+			var rgb3= Math.floor(Math.random()*(MAX-MIN)+MIN);
+			let nuevoDiv=document.createElement("div");
+			let texto=document.createTextNode("Soy un nuevo DIV");
+			nuevoDiv.append(texto);
+			let input=document.getElementById('div')
+			input.append(nuevoDiv);
+			var randomColor="background-color: rgb("+rgb1+","+rgb2+","+rgb3+");";
+			nuevoDiv.setAttribute("style",randomColor);
+
+		}
+	</script>
+</head>
+<body>
+	<div id="div">
+		<input type="button" value="Anadir nuevo div" id="botonDiv" onclick="anadirDiv()">
+	</div>
+	
+</body>
+</html>
