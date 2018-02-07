@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>El juego del Ahorcado</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		
+		body {
+			background: url('https://examenjs.000webhostapp.com/imagenes/hangman-bg.png') fixed;
+			text-align: center;
+			font-family: Helvetica, sans-serif;
+		}
+		input {
+			border: 2px solid #999;
+			font-family: Helvetica, sans-serif;
+			color: #999;
+		}
+
+		#palabraAciertos {
+			font-family: 'Permanent Marker', 'cursive';
+			font-size: 2.0em;
+		}
+
+		h1 {
+			font-family: 'Permanent Marker', 'cursive';
+		}
+
+		li {
+			
+			margin:5px;
+			max-width:900px;
+			display: inline;
+			cursor: pointer;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		//******   variables globales   ***********/
+
+		var palabraAdivinar, palabraJuego, errores;
+
+		var alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+        'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S',
+        'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+		var palabras = ["NATA","TIRAMISU","FRESA","VAINILLA","CHOCOLATE","AVELLANA"];
+
+		//****** FIN variables globales  ***********/
+
+		window.onload = iniciar;
+
+		function iniciar(){
+			palabraAdivinar = palabraAzar(); 
+			palabraJuego = new Array(palabraAdivinar.length);
+			errores = 0;
+			cargarLetras();
+			valorInicialJuego();
+			mostrarPalabraJuego();
+			//window.addEventListener("keypress", letraTeclado);
+		}
+
+		// Ejercicio 1
+		function cargarLetras(){
+			for(i=0;i<alfabeto.length;i++){
+				let letra=alfabeto[i];
+				let elementoLi=document.createElement('li');
+				elementoLi.textContent=letra;
+				elementoLi.addEventListener('click', letraRaton);
+				let letras=document.getElementById('letras');
+				letras.appendChild(elementoLi);
+			}
+		}
+
+		// Ejercicio 2
+		function palabraAzar(){
+			let numero= numeroAzar(palabras.length);
+			let stringPalabra=palabras[numero];
+			return stringPalabra.split("");
+		}
+
+		function numeroAzar(cantidad){
+			return Math.floor((Math.random()*(cantidad-1))); 
+		}
+
+		// Ejercicio 3
+		function valorInicialJuego(){
+			for(i=0;i<palabraJuego.length;i++){
+				palabraJuego[i]="- ";
+			}
+		}
+
+		// Ejercicio 4
+		function mostrarPalabraJuego(){
+			let parrafo= document.getElementById('palabraAciertos');
+			for(i=0;i<palabraJuego.length;i++){
+				parrafo.append(palabraJuego[i]);
+				
+			}
+		}
+
+		// Ejercicio 5
+		function letraRaton(event){
+			var letra=this.textContent;
+			comprobarLetra(letra);
+		}
+
+		// Ejercicio 6
+		function actualizarAciertos(letra){
+			let letraEncontrada=false;
+			for(let i=0;i<palabraAdivinar.length;i++){
+				if(letra===palabraAdivinar[i]){
+					palabraJuego[i]= letra+" ";
+					letraEncontrada=true;
+				}	
+			}
+			return letraEncontrada;			
+		}
+
+		// Ejercicio 7
+		function actualizarPalabraJuego(){
+			document.getElementById('palabraAciertos').textContent=" ";
+			mostrarPalabraJuego();
+		}
+
+		// Ejercicio 8
+		function actualizarLetrasError(letra){
+			document.getElementById('letrasErroneas').append(letra);
+			let elemento=document.getElementById('hangman');
+			elemento.src="https://examenjs.000webhostapp.com/imagenes/hangman"+errores+".png"
+		}		
+
+		// Ejercicio 9
+		function comprobarPartidaTerminada(){
+			let contadorLetras=0;
+			for(let i=0;i<palabraJuego.length;i++){
+				if(palabraJuego[i]!=="- "){
+					contadorLetras++;
+				}
+			}
+			if(contadorLetras===palabraJuego.length){
+					alert("Has ganado!");
+			}
+		}
+
+		// Ejercicio 10
+		function letraTeclado(event){
+			let letraIntroducida=event.key.toUpperCase();
+			if(letraValida(letraIntroducida)===true){
+				comprobarLetra(letraIntroducida);
+			}else{
+				alert("Esa letra no vale");
+			}
+		}
+
+		// Ejercicio 10
+		function letraValida(letra){
+			let letraBuena=false;
+			for(let i=0;i<alfabeto.length;i++){
+				if(letra===alfabeto[i]){
+					letraBuena=true;
+				}
+			}
+			return letraBuena;
+		}
+
+		// Ejercicio 11
+		// Añade lo que consideres necesario
+
+
+
+		// comprueba si la letra elegida por el usuario está en la palabra a adivinar
+		// y actualiza el estado del juego
+		function comprobarLetra(letra){
+			var encontrada = actualizarAciertos(letra);
+			
+			actualizarPalabraJuego();
+			
+			// si la letra no está en la palabra, añadimos el error
+			if(!encontrada){
+				actualizarNumError();
+				actualizarLetrasError(letra);				
+			}
+			// si está en la palabra, comprobamos si está la palabra completa
+			else {
+				comprobarPartidaTerminada();
+			}
+		}
+
+		// Actualiza el número de errores y comprueba si el jugador ha perdido
+		function actualizarNumError(){
+			errores++;
+	    	// si haces 6 errores, pierdes
+			if(errores === 6){
+				window.alert("Uh...creo que ha terminado el juego.");
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Ahorcado</h1>
+	<p><ul id="letras"></ul></p>
+	<p id="palabraAciertos"></p>
+	<form name="formulario">
+		<p id="letrasErroneas">Letras erróneas:</p>
+		<img src="imagenes/hangman0.png" id="hangman"/><br />
+		<input name="refresh" type="button" value="Nuevo juego" onClick="location.reload()"/>
+	</form>
+</body>
+</html>
